@@ -13,10 +13,10 @@ No Food No Life
 
 #### TODO:게시판 종류에 따라 3가지 테이블 구성 및 적합한 UI 구현<br>
 <ul>(1) 레시피(RBS, recipe board system) - bbsLike column 삭제, 관리자만 글쓰기 가능, 카테고리별로 모아보기 구현
-<li>ex) rbsID, rbsCategory...등으로 column name 변경</li>
+<br> ex) rbsID, rbsCategory...등으로 column name 변경
 </ul>
-> <ul>(2) 커뮤니티(MRBS, my recipe board system): 나의 레시피/베스트 레시피 - bbsBest int column 추가. <br> 추천수가 10 이상인 레시피 글이 베스트 레시피 리스트에 노출</ul>
-> <ul>(3) 자유게시판(BBS): 기존 게시판과 동일</ul>
+<ul>(2) 커뮤니티(MRBS, my recipe board system): 나의 레시피/베스트 레시피 - bbsBest int column 추가. <br> 추천수가 10 이상인 레시피 글이 베스트 레시피 리스트에 노출</ul>
+<ul>(3) 자유게시판(BBS): 기존 게시판과 동일</ul>
 
 #### 2. 댓글(CMT, comment)
 > <img src="CMT.png"><br>
