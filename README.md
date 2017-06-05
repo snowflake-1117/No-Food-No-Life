@@ -1,5 +1,36 @@
 No Food No Life
 ================
+<br><br>
+### 17.06.06 update
+
+#### 1. 게시판(BBS, bulletin board system)
+> <img src="BBS.png"><br>
+> <li>게시글 쓰기: 타이틀, 게시글 내용 등 저장, YouTube 동영상 링크 저장하여 inframe으로 재생가능</li>
+> <li>게시글 수정: 게시글 번호의 값을 참조하여 타이틀, 게시글 내용, 동영상 링크 수정가능</li>
+> <li>게시글 삭제</li>
+> <li>게시글 조회: 게시글 번호의 값을 참조하여 BBS 데이터베이스에 있는 필드값 조회, 조회수 카운트, 추천기능 추가</li>
+> <li>게시글 리스트: 게시글 번호의 오름차순으로 정렬, 데이터베이스에 있는 값을 일부 보여줌, 페이징기능 추가</li>
+
+#### TODO:게시판 종류에 따라 3가지 테이블 구성 및 적합한 UI 구현<br>
+<ul>(1) 레시피(RBS, recipe board system) - bbsLike column 삭제, 관리자만 글쓰기 가능, 카테고리별로 모아보기 구현
+<li>ex) rbsID, rbsCategory...등으로 column name 변경</li>
+</ul>
+> <ul>(2) 커뮤니티(MRBS, my recipe board system): 나의 레시피/베스트 레시피 - bbsBest int column 추가. <br> 추천수가 10 이상인 레시피 글이 베스트 레시피 리스트에 노출</ul>
+> <ul>(3) 자유게시판(BBS): 기존 게시판과 동일</ul>
+
+#### 2. 댓글(CMT, comment)
+> <img src="CMT.png"><br>
+> <li>댓글 쓰기: 댓글 내용 등 저장</li>
+> <li>댓글 수정: 댓글 번호의 값을 참조하여 내용 수정가능</li>
+> <li>댓글 삭제</li>
+> <li>댓글 리스트: 댓글 번호의 내림차순으로 정렬, 데이터베이스에 있는 값을 일부 보여줌, 페이징기 없음</li>
+
+#### TODO:게시판 종류에 따라 3가지 댓글 테이블 구성<br>
+<ul>(1) 레시피(RCMT, recipe comment) - bbsID column을 rbsID column으로 변경</ul>
+<ul>(2) 커뮤니티(MRCMT, my recipe comment) - bbsID column을 mrbsID column으로 변경</ul>
+<ul>(3) 자유게시판(CMT, comment)</ul>
+
+<br><br><br>
 
 ## 주제 및 목표
 > **1. 주제: 요리 레시피 제공 사이트**<br><br>
