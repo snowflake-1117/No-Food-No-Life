@@ -79,4 +79,4 @@ No Food No Life
 ## 개발자
 > - snowflake-1117(1117hyemin@gmail.com)
 > - HyoeunKwon(oasis_1205@naver.com)
-> - 100su(zxctys@naver.com) 
+> - su100(zxctys@naver.com) 
