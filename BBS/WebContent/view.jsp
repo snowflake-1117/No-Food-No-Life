@@ -209,11 +209,15 @@
 								<td style="width: 60%;"><p style="text-align: left;"><%=list.get(i).getCmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 							.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></p></td>
 								<%
-									if (userID != null && userID.equals(bbs.getUserID())) {
+									if (userID != null && userID.equals(list.get(i).getUserID())) {
 								%>
 								<td><a href="cmtUpdate.jsp?cmtID=<%=list.get(i).getCmtID()%>">수정</a> | <a
 									onclick="return confirm('정말로 삭제하시겠습니까?')"
 									href="cmtDeleteAction.jsp?cmtID=<%=list.get(i).getCmtID()%>">삭제</a></td>
+								<%
+									} else {
+								%>
+									<td colspan="2"></td>
 								<%
 									}
 								%>
