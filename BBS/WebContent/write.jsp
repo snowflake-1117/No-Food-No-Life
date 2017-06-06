@@ -24,8 +24,7 @@ a, a:hover {
 		}
 	%>
 	<header class="header"> <a href="main.jsp"
-		style="text-decoration: none; color: #ff7846">No Food, No life!</a>
-	<br>
+		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
 	</header>
 	<nav align="center">
 	<ul class="nav">
@@ -55,12 +54,11 @@ a, a:hover {
 	<div style="padding-top: 350px" class="container" align="center">
 		<div class="row">
 			<form method="post" action="writeAction.jsp">
-				<table class="table"
-					style="text-align: center;">
+				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
 							<th height="50px" colspan="2"
-								style="background-color: #695d46; color: #ffffff; text-align: center; vertical-align:middle;">
+								style="background-color: #695d46; color: #ffffff; text-align: center; vertical-align: middle;">
 								게시판글쓰기 양식</th>
 						</tr>
 					</thead>
@@ -75,7 +73,7 @@ a, a:hover {
 									<option value="일상/잡답">일상/잡담</option>
 							</select></td>
 						</tr>
-						<tr style="background-color:#feefe7;">
+						<tr>
 							<td style="width: 30%;">
 								<p>제목</p>
 							</td>
@@ -90,16 +88,21 @@ a, a:hover {
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
 								name="bbsVideoSrc" maxlength="200" /></td>
 						</tr>
-						<tr style="background-color:#feefe7;">
+						<tr>
 							<td style="width: 30%;">
 								<p>내용</p>
 							</td>
 							<td><textarea class="form-control" placeholder="글 내용"
 									name="bbsContent" maxlength="20000" style="height: 500px;"></textarea></td>
 						</tr>
+						<tr>
+							<td colspan="2"></td>
+						</tr>
 					</tbody>
-				</table> 
-				<input type="submit" style="background-color: #695d46; border: 2px solid #695d46" class="btn btn-primary" value="글쓰기">
+				</table>
+				<input type="submit"
+					style="background-color: #695d46; border: 2px solid #695d46"
+					class="btn btn-primary" value="글쓰기">
 			</form>
 		</div>
 	</div>
