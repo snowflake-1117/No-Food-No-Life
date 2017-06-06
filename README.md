@@ -1,6 +1,18 @@
 No Food No Life
 ================
 <br><br>
+### 17.06.07 update
+
+1. 디자인 적용
+> <img src="bbsList.png"><br>
+> <img src="bbsWriting.png"><br>
+> <img src="bbsView.png"><br>
+2. 글삭제 시 글번호가 재정렬 되도록 구현, 글삭제 방식 변경(bbsAvailable 값 변경하지 않고 디비에서 직접삭제)
+3. 게시글에 포함된 댓글이 삭제 되도록 구현
+4. 회원가입시 USER 디비 row=0이 아니면 메인페이지로 넘어가지 않는 현상 수정
+5. 게시글 목록에 댓글 개수가 노출 되도록 구현
+
+<br><br>
 ### 17.06.06 update
 
 #### 1. 게시판(BBS, bulletin board system)
@@ -30,7 +42,7 @@ No Food No Life
 <ul>(2) 커뮤니티(MRCMT, my recipe comment) - bbsID column을 mrbsID column으로 변경</ul>
 <ul>(3) 자유게시판(CMT, comment)</ul>
 
-<br><br><br>
+<br><br>
 
 ## 주제 및 목표
 > **1. 주제: 요리 레시피 제공 사이트**<br><br>
