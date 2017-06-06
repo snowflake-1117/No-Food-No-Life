@@ -150,4 +150,16 @@ public class CmtDAO {
 		}
 		return -1;//디비 오류
 	}
+	
+	public int deletePost(int bbsID){//게시글 삭제시 댓글도 함께 삭제
+		String SQL = "DELETE FROM CMT WHERE bbsID = ?";
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return -1;//디비 오류
+	}
 }

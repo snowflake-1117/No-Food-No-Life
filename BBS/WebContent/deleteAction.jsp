@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="bbs.BbsDAO"%>
 <%@ page import="bbs.Bbs"%>
+<%@ page import="cmt.CmtDAO"%>
+<%@ page import="cmt.Cmt"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -52,7 +54,7 @@
 		else {
 				BbsDAO bbsDAO = new BbsDAO();
 				int result = bbsDAO.delete(bbsID);
-				bbsDAO.reSort(bbsID);//삭제 후 글 번호 재정렬
+				CmtDAO cmtDAO = new CmtDAO();
 				
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
@@ -61,6 +63,8 @@
 					script.println("history.back()");
 					script.println("</script>");
 				} else {
+					bbsDAO.reSort(bbsID);//삭제 후 글 번호 재정렬
+					cmtDAO.deletePost(bbsID);//게시글에 존재하는 댓글 삭제
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
 					script.println("location.href='bbs.jsp'");
