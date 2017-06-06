@@ -48,12 +48,9 @@
 				script.println("alert('이미 존재하는 아이디입니다.')");
 				script.println("history.back()");
 				script.println("</script>");
-			} else if (result == 0) {
+			} else {
 				session.setAttribute("userID", user.getUserID());
-				PrintWriter script = response.getWriter();
-				script.println("<script> ");
-				script.println("location.href='main.jsp'");
-				script.println("</script>");
+				response.sendRedirect("main.jsp");
 			}
 		}
 	%>
