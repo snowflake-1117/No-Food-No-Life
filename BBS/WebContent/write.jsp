@@ -78,11 +78,9 @@
 								<p>Category</p>
 							</td>
 							<td><select class="form-control" name="bbsCategory">
-									<option value="notice">notice</option>
-									<option value="QnA">QnA</option>
-									<option value="recipes">recipes</option>
-									<option value="my recipes">my recipes</option>
-									<option value="free board">free board</option>
+									<option value="요리팁">요리팁</option>
+									<option value="요리질문">요리질문</option>
+									<option value="일상/잡답">일상/잡담</option>
 							</select></td>
 						</tr>
 						<tr>
