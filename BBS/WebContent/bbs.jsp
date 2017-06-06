@@ -3,7 +3,6 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.BbsDAO"%>
 <%@ page import="bbs.Bbs"%>
-<%@ page import="cmt.Cmt"%>
 <%@ page import="cmt.CmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -99,6 +98,7 @@ a, a:hover {
 				<tbody>
 					<%
 						BbsDAO bbsDAO = new BbsDAO();
+						CmtDAO cmtDAO = new CmtDAO();
 						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
@@ -106,7 +106,7 @@ a, a:hover {
 						<td><%=list.get(i).getBbsID()%></td>
 						<td><%=list.get(i).getBbsCategory()%></td>
 						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></a></td>
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getBbsID())%>] </a></td>
 						<td><%=list.get(i).getUserID()%></td>
 						<td><%=list.get(i).getBbsDate().substring(0, 11)%></td>
 						<td><%=list.get(i).getBbsHit()%></td>

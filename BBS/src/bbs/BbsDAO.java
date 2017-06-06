@@ -191,7 +191,6 @@ public class BbsDAO {
 		}
 		return -1;//디비 오류
 	}
-	
 
 	public void reSort(int count) {//테이블 bbsID 재정렬
 		while (count <= maxCount()) {
