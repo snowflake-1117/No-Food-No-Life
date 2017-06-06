@@ -162,4 +162,19 @@ public class CmtDAO {
 		}
 		return -1;//디비 오류
 	}
+	
+	public int countCmt(int bbsID) {//테이블의 총 row 개수를 리턴
+		int total_count = 0;
+		String SQL = "select count(bbsID) count from CMT WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return total_count = rs.getInt("count");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }
