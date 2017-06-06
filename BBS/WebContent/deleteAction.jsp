@@ -50,9 +50,10 @@
 			script.println("</script>");
 		}
 		else {
-			
 				BbsDAO bbsDAO = new BbsDAO();
 				int result = bbsDAO.delete(bbsID);
+				bbsDAO.reSort(bbsID);//삭제 후 글 번호 재정렬
+				
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");

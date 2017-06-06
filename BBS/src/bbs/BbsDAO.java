@@ -181,7 +181,7 @@ public class BbsDAO {
 	}
 	
 	public int delete(int bbsID){
-		String SQL = "UPDATE BBS SET bbsAvailable=0 WHERE bbsID = ?";
+		String SQL = "DELETE FROM BBS WHERE bbsID = ?";
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
@@ -191,4 +191,33 @@ public class BbsDAO {
 		}
 		return -1;//디비 오류
 	}
+	
+
+	public void reSort(int count) {//테이블 bbsID 재정렬
+		while (count <= maxCount()) {
+			try {
+				String SQL = "UPDATE BBS SET bbsID = bbsID -1 WHERE bbsID > ?";
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, count++);
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public int maxCount() {//테이블의 총 row 개수를 리턴
+		int total_count = 0;
+		String SQL = "select count(*) count from BBS";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			rs.next();
+			return total_count = rs.getInt("count");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
 }
