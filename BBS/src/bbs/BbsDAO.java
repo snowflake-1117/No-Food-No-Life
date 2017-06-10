@@ -64,8 +64,8 @@ public class BbsDAO {
 		return -1;
 	}
 
-	public int write(String bbsCategory, String bbsTitle, String userID, String bbsContent, String bbsVideoSrc){
-		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public int write(String bbsCategory, String bbsTitle, String userID, String bbsContent, String bbsVideoSrc, String bbsImage){
+		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
@@ -78,6 +78,7 @@ public class BbsDAO {
 			pstmt.setInt(8, 0);
 			pstmt.setString(9, bbsVideoSrc);
 			pstmt.setInt(10, 0);
+			pstmt.setString(11, bbsImage);
 			return pstmt.executeUpdate();
 		} catch(Exception e){
 			e.printStackTrace();
@@ -115,6 +116,7 @@ public class BbsDAO {
 				bbs.setBbsHit(rs.getInt(8));
 				bbs.setBbsVideoSrc(rs.getString(9));
 				bbs.setBbsLike(rs.getInt(10));
+				bbs.setBbsImage(rs.getString(11));
 				list.add(bbs);
 			}
 		} catch(Exception e){
@@ -155,6 +157,7 @@ public class BbsDAO {
 				bbs.setBbsHit(rs.getInt(8));
 				bbs.setBbsVideoSrc(rs.getString(9));
 				bbs.setBbsLike(rs.getInt(10));
+				bbs.setBbsImage(rs.getString(11));
 				return bbs;
 			}
 		}
@@ -164,15 +167,16 @@ public class BbsDAO {
 		return null;
 	}
 	
-	public int update(int bbsID, String bbsCategory, String bbsTitle, String bbsVideoSrc, String bbsContent){
-		String SQL = "UPDATE BBS SET bbsCategory = ?, bbsTitle = ?, bbsContent = ?, bbsVideoSrc = ? WHERE bbsID = ?";
+	public int update(int bbsID, String bbsCategory, String bbsTitle, String bbsContent, String bbsVideoSrc, String bbsImage){
+		String SQL = "UPDATE BBS SET bbsCategory = ?, bbsTitle = ?, bbsContent = ?, bbsVideoSrc = ?, bbsImage = ? WHERE bbsID = ?";
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bbsCategory);
 			pstmt.setString(2, bbsTitle);
 			pstmt.setString(3, bbsContent);
 			pstmt.setString(4, bbsVideoSrc);
-			pstmt.setInt(5, bbsID);
+			pstmt.setString(5, bbsImage);
+			pstmt.setInt(6, bbsID);
 			return pstmt.executeUpdate();
 		} catch(Exception e){
 			e.printStackTrace();

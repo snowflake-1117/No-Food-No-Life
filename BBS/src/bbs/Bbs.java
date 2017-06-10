@@ -9,7 +9,14 @@ public class Bbs {
 	private String bbsContent;
 	private String bbsVideoSrc;
 	private int bbsLike;
+	private String bbsImage;
 
+	public String getBbsImage() {
+		return bbsImage;
+	}
+	public void setBbsImage(String bbsImage) {
+		this.bbsImage = bbsImage;
+	}
 	public int getBbsLike() {
 		return bbsLike;
 	}

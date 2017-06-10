@@ -84,7 +84,7 @@ a, a:hover {
 	</nav>
 	<div style="padding-top: 350px; padding-bottom:200px;" class="container" align="center">
 		<div class="row">
-			<form method="post" action="updateAction.jsp?bbsID=<%=bbsID%>">
+			<form method="post" action="updateAction.jsp?bbsID=<%=bbsID%>" enctype="multipart/form-data">
 				<table class="table"
 					style="text-align: center;">
 					<thead>
@@ -116,9 +116,22 @@ a, a:hover {
 							<td style="width: 30%;">
 								<p>첨부할 동영상 링크</p>
 							</td>
+							<%if(!bbs.getBbsVideoSrc().equals("")){ %>
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
 								name="bbsVideoSrc" maxlength="200"  value="https://youtu.be/<%=bbs.getBbsVideoSrc()%>"/></td>
+							<% } else {%>
+							<td><input type="url" class="form-control"
+								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
+								name="bbsVideoSrc" maxlength="200"  value=""/></td>
+							<% }%>
+						</tr>
+						<tr>
+							<td style="width: 30%;">
+								<p>첨부할 이미지 파일</p>
+							</td>
+							<td><input type="file" class="form-control"
+								name="bbsImage"/></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">

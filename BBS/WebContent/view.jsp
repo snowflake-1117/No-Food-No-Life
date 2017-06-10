@@ -58,8 +58,7 @@ a, a:hover {
 	%>
 
 	<header class="header"> <a href="main.jsp"
-		style="text-decoration: none; color: #ff7846">No Food, No life!</a>
-	<br>
+		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
 	</header>
 	<nav align="center">
 	<ul class="nav">
@@ -87,17 +86,24 @@ a, a:hover {
 	%>
 	</nav>
 
-	<div class="container" style="padding-top: 350px; padding-bottom: 200px;">
+	<div class="container"
+		style="padding-top: 350px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
-				<a href="bbs.jsp"  style="background-color: #695d46; border: 2px solid #695d46" class="btn btn-success pull-right">목록</a>
+				<a href="bbs.jsp"
+					style="background-color: #695d46; border: 2px solid #695d46"
+					class="btn btn-success pull-right">목록</a>
 			</div>
 			<%
 				if (userID != null && userID.equals(bbs.getUserID())) {
 			%>
-			<a href="update.jsp?bbsID=<%=bbsID%>" style="background-color: #ff7846; border: 1px solid #ff7846;" class="btn btn-primary">수정</a>
-			<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-				href="deleteAction.jsp?bbsID=<%=bbsID%>" style="background-color: #ff7846; border: 1px solid #ff7846;" class="btn btn-primary">삭제</a>
+			<a href="update.jsp?bbsID=<%=bbsID%>"
+				style="background-color: #ff7846; border: 1px solid #ff7846;"
+				class="btn btn-primary">수정</a> <a
+				onclick="return confirm('정말로 삭제하시겠습니까?')"
+				href="deleteAction.jsp?bbsID=<%=bbsID%>"
+				style="background-color: #ff7846; border: 1px solid #ff7846;"
+				class="btn btn-primary">삭제</a>
 			<%
 				}
 			%>
@@ -108,8 +114,8 @@ a, a:hover {
 				<thead>
 					<tr>
 						<th colspan="2"
-							style="background-color: #695d46; color:#ffffff; text-align: center;">게시판 글
-							보기</th>
+							style="background-color: #695d46; color: #ffffff; text-align: center;">게시판
+							글 보기</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -139,12 +145,19 @@ a, a:hover {
 						<td><%=bbs.getBbsLike()%></td>
 					</tr>
 					<%
-						if (bbs.getBbsVideoSrc() != null) {
+						if (bbs.getBbsVideoSrc() != null||!bbs.getBbsVideoSrc().equals("")) {
 					%>
 					<tr>
 						<td colspan="2"><iframe width="640" height="360"
 								src="https://www.youtube.com/embed/<%=bbs.getBbsVideoSrc()%>"
 								frameborder="0" allowfullscreen></iframe></td>
+					</tr>
+					<%
+						}
+						if (bbs.getBbsImage() != null) {
+					%>
+					<tr>
+						<td colspan="2"><img src="<%=bbs.getBbsImage()%>" style="max-width:1024px; height:auto;'"></td>
 					</tr>
 					<%
 						}
@@ -155,7 +168,8 @@ a, a:hover {
 					.replaceAll("\n", "<br/>")%></td>
 					</tr>
 					<tr>
-						<td colspan="2"><a href="like.jsp?bbsID=<%=bbsID%>" style="background-color: #ff7846; border: 1px solid #ff7846;"
+						<td colspan="2"><a href="like.jsp?bbsID=<%=bbsID%>"
+							style="background-color: #ff7846; border: 1px solid #ff7846;"
 							class="btn btn-primary">추천<br /><%=bbs.getBbsLike()%></a></td>
 					</tr>
 				</tbody>

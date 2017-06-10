@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs" %>
+<%@ page import="bbs.Bbs"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="java.io.File"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	String savePath = application.getRealPath("");
+	int maxSize = 5 * 1024 * 1024;
+	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8",
+			new DefaultFileRenamePolicy());
+	String imgName=null;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -39,21 +48,18 @@
 			script.println("location.href='bbs.jsp'");
 			script.println("</script>");
 		}
-		
+
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
-		
+
 		if (!userID.equals(bbs.getUserID())) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");
 			script.println("location.href='bbs.jsp'");
 			script.println("</script>");
-		}
-		else {
-			if (request.getParameter("bbsTitle")==null||request.getParameter("bbsCategory")==null||
-					request.getParameter("bbsContent")==null||
-					request.getParameter("bbsTitle").equals("")||request.getParameter("bbsCategory").equals("")||
-					request.getParameter("bbsContent").equals("")) {
+		} else {
+			if (multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null
+					|| multi.getParameter("bbsTitle").equals("") || multi.getParameter("bbsContent").equals("")) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않은 사항이 있습니다.')");
@@ -61,8 +67,24 @@
 				script.println("</script>");
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.update(bbsID, request.getParameter("bbsCategory"), request.getParameter("bbsTitle"), 
-						request.getParameter("bbsVideoSrc").replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", ""), request.getParameter("bbsContent"));
+				
+				File imgFile = multi.getFile("bbsImage");
+				if(imgFile!=null) imgName = imgFile.getName();
+				
+				int result;
+				
+				if (multi.getParameter("bbsVideoSrc") != null) {
+					result = bbsDAO.update(bbsID, multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"),
+							multi.getParameter("bbsContent"),
+							multi.getParameter("bbsVideoSrc").replace("https://www.youtube.com/watch?v=", "")
+									.replace("https://youtu.be/", ""),
+							imgName);
+				} 
+				else {
+					result = bbsDAO.update(bbsID, multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"),
+							multi.getParameter("bbsContent"), null, imgName);
+				}
+				
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");

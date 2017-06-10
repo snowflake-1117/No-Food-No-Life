@@ -53,7 +53,7 @@ a, a:hover {
 	</nav>
 	<div style="padding-top: 350px" class="container" align="center">
 		<div class="row">
-			<form method="post" action="writeAction.jsp">
+			<form method="post" action="writeAction.jsp" enctype="multipart/form-data">
 				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
@@ -87,6 +87,13 @@ a, a:hover {
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
 								name="bbsVideoSrc" maxlength="200" /></td>
+						</tr>
+						<tr>
+							<td style="width: 30%;">
+								<p>첨부할 이미지 파일</p>
+							</td>
+							<td><input type="file" class="form-control"
+								name="bbsImage" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
