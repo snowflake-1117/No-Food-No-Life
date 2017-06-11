@@ -13,7 +13,7 @@
 	int maxSize = 5 * 1024 * 1024;
 	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 			new DefaultFileRenamePolicy());
-	String imgName=null;
+	String imgName = null;
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,24 +67,24 @@
 				script.println("</script>");
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
-				
+
 				File imgFile = multi.getFile("bbsImage");
-				if(imgFile!=null) imgName = imgFile.getName();
-				
+				if (imgFile != null)
+					imgName = imgFile.getName();
+
 				int result;
-				
-				if (multi.getParameter("bbsVideoSrc") != null) {
+
+				if (multi.getParameter("bbsVideoSrc") == null || multi.getParameter("bbsVideoSrc").equals("")) {
+					result = bbsDAO.update(bbsID, multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"),
+							multi.getParameter("bbsContent"), null, imgName);
+				} else {
 					result = bbsDAO.update(bbsID, multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"),
 							multi.getParameter("bbsContent"),
 							multi.getParameter("bbsVideoSrc").replace("https://www.youtube.com/watch?v=", "")
 									.replace("https://youtu.be/", ""),
 							imgName);
-				} 
-				else {
-					result = bbsDAO.update(bbsID, multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"),
-							multi.getParameter("bbsContent"), null, imgName);
 				}
-				
+
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");

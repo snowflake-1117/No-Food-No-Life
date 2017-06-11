@@ -116,14 +116,14 @@ a, a:hover {
 							<td style="width: 30%;">
 								<p>첨부할 동영상 링크</p>
 							</td>
-							<%if(!bbs.getBbsVideoSrc().equals("")){ %>
+							<%if(bbs.getBbsVideoSrc() == null){ %>
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="bbsVideoSrc" maxlength="200"  value="https://youtu.be/<%=bbs.getBbsVideoSrc()%>"/></td>
+								name="bbsVideoSrc" maxlength="200"/></td>
 							<% } else {%>
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="bbsVideoSrc" maxlength="200"  value=""/></td>
+								name="bbsVideoSrc" maxlength="200"  value="https://youtu.be/<%=bbs.getBbsVideoSrc()%>"/></td>
 							<% }%>
 						</tr>
 						<tr>

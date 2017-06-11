@@ -52,17 +52,17 @@
 				File imgFile = multi.getFile("bbsImage");
 				if(imgFile!=null) imgName = imgFile.getName();
 				
-				if (multi.getParameter("bbsVideoSrc") != null || !multi.getParameter("bbsVideoSrc").equals("")) {
+				if(multi.getParameter("bbsVideoSrc").equals("")||multi.getParameter("bbsVideoSrc") == null) {
+					result = bbsDAO.write(multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"), userID,
+							multi.getParameter("bbsContent"), null, imgName);
+				}
+				else {
 					result = bbsDAO.write(multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"), userID,
 							multi.getParameter("bbsContent"),
 							multi.getParameter("bbsVideoSrc").replace("https://www.youtube.com/watch?v=", "")
 									.replace("https://youtu.be/", ""),
 							imgName);
 				} 
-				else {
-					result = bbsDAO.write(multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"), userID,
-							multi.getParameter("bbsContent"), null, imgName);
-				}
 
 				if (result == -1) {
 					PrintWriter script = response.getWriter();

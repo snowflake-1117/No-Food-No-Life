@@ -145,7 +145,7 @@ a, a:hover {
 						<td><%=bbs.getBbsLike()%></td>
 					</tr>
 					<%
-						if (bbs.getBbsVideoSrc() != null||!bbs.getBbsVideoSrc().equals("")) {
+						if (bbs.getBbsVideoSrc() != null) {
 					%>
 					<tr>
 						<td colspan="2"><iframe width="640" height="360"
