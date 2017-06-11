@@ -12,7 +12,7 @@ No Food No Life
 6. RBS, RCMT 데이터베이스 구축
 > <img src="RBS.png"><br>
 > <img src="RCMT.png"><br>
-7. 카테고리별로 페이징 기능 구현
+7. 레시피 게시판구현 및 카테고리별로 페이징 기능 구현
 8. 제목/내용/카테고리/글쓴이에 따른 검색 기능 구현
 
 <br><br>
