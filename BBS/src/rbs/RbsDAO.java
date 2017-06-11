@@ -85,7 +85,7 @@ public class RbsDAO {
 	}
 
 	public ArrayList<Rbs> getList(int pageNumber) {
-		String SQL = "SELECT * FROM RBS WHERE rbsID < ? AND rbsAvailable = 1 ORDER BY rbsID DESC LIMIT 10";
+		String SQL = "SELECT * FROM RBS WHERE rbsID < ? ORDER BY rbsID DESC LIMIT 10";
 		ArrayList<Rbs> list = new ArrayList<Rbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -111,6 +111,33 @@ public class RbsDAO {
 		return list;
 	}
 
+	public ArrayList<Rbs> getCategoryList(String rbsCategory) {
+		String SQL = "SELECT * FROM RBS WHERE rbsCategory = ? ORDER BY rbsID DESC";
+		ArrayList<Rbs> list = new ArrayList<Rbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, rbsCategory);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Rbs rbs = new Rbs();
+				rbs.setRbsID(rs.getInt(1));
+				rbs.setRbsCategory(rs.getString(2));
+				rbs.setRbsTitle(rs.getString(3));
+				rbs.setUserID(rs.getString(4));
+				rbs.setRbsDate(rs.getString(5));
+				rbs.setRbsContent(rs.getString(6));
+				rbs.setRbsAvailable(rs.getInt(7));
+				rbs.setRbsHit(rs.getInt(8));
+				rbs.setRbsVideoSrc(rs.getString(9));
+				rbs.setRbsImage(rs.getString(10));
+				list.add(rbs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM RBS WHERE rbsID < ? AND rbsAvailable = 1";
 		try {

@@ -3,7 +3,7 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="rbs.RbsDAO"%>
 <%@ page import="rbs.Rbs"%>
-<%@ page import="cmt.CmtDAO"%>
+<%@ page import="rcmt.RcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,10 +39,10 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="notice.html">Notice&amp;QnA</a></li>
+			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="active" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="notice.html">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
@@ -63,12 +63,12 @@ a, a:hover {
 	</nav>
 	 <nav>
          <ul class="menu">
-        <li><a class="before" href="Simple.html">Simple</a></li>
-        <li><a class="before" href="Korean.html">Korean</a></li>
-        <li><a class="before" href="Chinese.html">Chinese</a></li>
-        <li><a class="before" href="Japanese.html">Japanese</a></li>
-        <li><a class="before" href="Western.html">Western</a></li>
-        <li><a class="before" href="Desert.html">Desert</a></li>
+        <li><a class="before" href="rbsSimple.jsp">Simple</a></li>
+        <li><a class="before" href="rbsKorean.jsp">Korean</a></li>
+        <li><a class="before" href="rbsChinese.jsp">Chinese</a></li>
+        <li><a class="before" href="rbsJapanese.jsp">Japanese</a></li>
+        <li><a class="before" href="rbsWestern.jsp">Western</a></li>
+        <li><a class="before" href="rbsDesert.jsp">Desert</a></li>
       </ul>
 	</nav>
 	<div class="container" align="center"
@@ -99,7 +99,7 @@ a, a:hover {
 				<tbody>
 					<%
 						RbsDAO rbsDAO = new RbsDAO();
-						CmtDAO cmtDAO = new CmtDAO();
+						RcmtDAO rcmtDAO = new RcmtDAO();
 						ArrayList<Rbs> list = rbsDAO.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
@@ -107,7 +107,7 @@ a, a:hover {
 						<td><%=list.get(i).getRbsID()%></td>
 						<td><%=list.get(i).getRbsCategory()%></td>
 						<td><a href="rbsView.jsp?rbsID=<%=list.get(i).getRbsID()%>"><%=list.get(i).getRbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getRbsID())%>] </a></td>
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=rcmtDAO.countRcmt(list.get(i).getRbsID())%>] </a></td>
 						<td><%=list.get(i).getUserID()%></td>
 						<td><%=list.get(i).getRbsDate().substring(0, 11)%></td>
 						<td><%=list.get(i).getRbsHit()%></td>
@@ -129,10 +129,16 @@ a, a:hover {
 
 					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
 						if (i > 0 && rbsDAO.nextPage(i)) {
-				%>
-
-				<a href="rbs.jsp?pageNumber=<%=i%>"><%=i%></a>
+							if(i==pageNumber){
+				%>		
+				<a href="rbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</b></a>
 				<%
+							}
+							else {
+								%>
+								<a href="rbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</a>
+								<%
+							}
 					}
 					}
 					if (rbsDAO.nextPage(pageNumber + 1)) {
