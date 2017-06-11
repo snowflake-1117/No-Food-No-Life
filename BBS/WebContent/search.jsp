@@ -97,11 +97,11 @@ a, a:hover {
 				</thead>
 				<tbody>
 					<%
-						request.setCharacterEncoding("euc-kr");
+						request.setCharacterEncoding("utf-8");
 						BbsDAO bbsDAO = new BbsDAO();
 						CmtDAO cmtDAO = new CmtDAO();
-						String searchOption = new String(request.getParameter("searchOption").getBytes("8859_1"), "euc-kr");
-						String searchInput = new String(request.getParameter("searchInput").getBytes("8859_1"), "euc-kr");
+						String searchOption = new String(request.getParameter("searchOption").getBytes("8859_1"), "utf-8");
+						String searchInput = new String(request.getParameter("searchInput").getBytes("8859_1"), "utf-8");
 						ArrayList<Bbs> list = bbsDAO.searchList(pageNumber, searchOption, searchInput);	
 						for (int i = 0; i < list.size(); i++) {
 					%>
