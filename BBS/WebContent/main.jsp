@@ -31,7 +31,7 @@ a, a:hover {
       <ul class="nav"><div>
         <li><a href="introduce.jsp">Introduction</a></li>
         <li><a href="Recipes.jsp">Recipe</a></li>
-        <li><a href="myRecipes.jsp">Community</a></li>
+        <li><a href="bbs.jsp">Community</a></li>
         <li><a href="notice.jsp">Notice&amp;QnA</a></li></ul>
     </nav>
 		<%
