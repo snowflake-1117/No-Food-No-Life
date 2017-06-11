@@ -7,8 +7,7 @@
 <meta content="width=device-width" name="viewport" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>게시판</title>
-<<<<<<< HEAD
-=======
+
 <script>
 function idCheck(){//아이디길이 4~12자 제한 체크, 영문+숫자인지 체크
 	var id= document.addform.userID.value;
@@ -41,7 +40,6 @@ function memReg(){//가입하기 전 id길이와 비밀번호 체크
 	
 }
 </script>
->>>>>>> Hyoeun_JOIN
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -76,17 +74,6 @@ function memReg(){//가입하기 전 id길이와 비밀번호 체크
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
 				<div class="jumbotron" style="padding-top: 20px;">
-<<<<<<< HEAD
-					<form method="post" action="joinAction.jsp">
-						<h3 style="text-align:center;">회원가입 화면</h3>
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="10">
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
-						</div>
-						<div class="form-group">
-=======
 					<form method="post" action="joinAction.jsp" name="addform">
 						<h3 style="text-align:center;">회원가입 화면</h3>
 						<div class="form-group">
@@ -99,17 +86,12 @@ function memReg(){//가입하기 전 id길이와 비밀번호 체크
 							<input type="password" class="form-control" placeholder="비밀번호 확인" name="userPassword_Re" maxlength="20">
  						</div>
 						<div class="form-group">
->>>>>>> Hyoeun_JOIN
 							<input type="text" class="form-control" placeholder="이름" name="userName" maxlength="20">
 						</div>
 						<div class="form-group">
 							<input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="50">
 						</div>
-<<<<<<< HEAD
-						<input type="submit" class="btn btn-primary form-control" value="회원가입">
-=======
 						<input type="submit" onclick="memReg()" class="btn btn-primary form-control" value="회원가입">
->>>>>>> Hyoeun_JOIN
 					</form>
 				</div>
 			</div>

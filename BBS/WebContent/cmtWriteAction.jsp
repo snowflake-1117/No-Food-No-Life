@@ -11,9 +11,6 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<jsp:useBean id="cmt" class="cmt.Cmt" scope="page"></jsp:useBean>
-<jsp:setProperty property="cmtContent" name="cmt" />
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,7 +45,7 @@
 			script.println("</script>");
 		}
 
-		if (cmt.getCmtContent() == null) {
+		if (request.getParameter("cmtContent") == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력되지 않은 사항이 있습니다.')");
@@ -56,7 +53,7 @@
 			script.println("</script>");
 		} else {
 			CmtDAO cmtDAO = new CmtDAO();
-			int result = cmtDAO.write(userID, cmt.getCmtContent(), bbsID);
+			int result = cmtDAO.write(userID, request.getParameter("cmtContent"), bbsID);
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script> ");
