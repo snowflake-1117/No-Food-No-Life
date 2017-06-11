@@ -13,7 +13,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width" name="viewport" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>게시판</title>
+<link rel="stylesheet" href="css/main.css">
+<title>No food, no life</title>
+<style type="text/css">
+a, a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+</style>
 </head>
 <body>
 	<%
@@ -39,7 +46,7 @@
 			script.println("location.href='bbs.jsp'");
 			script.println("</script>");
 		}
-		
+
 		int cmtPageNumber = 1;
 		if (request.getParameter("cmtPageNumber") != null) {
 			cmtPageNumber = Integer.parseInt(request.getParameter("cmtPageNumber"));
@@ -49,61 +56,57 @@
 		bbsDAO.hit(bbsID);
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
 	%>
-	<nav class="navbar navbar-default">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-				class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
-	</div>
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<ul class="nav navbar-nav">
-			<li><a href="main.jsp">메인</a></li>
-			<li class="active"><a href="bbs.jsp">게시판</a></li>
-		</ul>
-		<%
-			if (userID == null) {
-		%>
-		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">접속하기<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="login.jsp">로그인</a></li>
-					<li><a href="join.jsp">회원가입</a></li>
-				</ul></li>
-		</ul>
-		<%
-			} else {
-		%>
-		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown" role="button" aria-haspopup="true"
-				aria-expanded="false">회원관리<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="logoutAction.jsp">로그아웃</a></li>
-				</ul></li>
-		</ul>
-		<%
-			}
-		%>
-	
-	</nav>
-	<div class="container">
+
+	<header class="header"> <a href="main.jsp"
+		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
+	</header>
+	<nav align="center">
+	<ul class="nav">
 		<div>
-			<a href="bbs.jsp" class="btn btn-primary">목록</a>
+			<li><a href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="Recipes.html">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="notice.html">Notice&amp;QnA</a></li>
+	</ul>
+	</nav>
+	<%
+		if (userID == null) {
+	%>
+	<div align="right" class="login">
+		<a href="login.jsp">로그인</a> | <a href="join.jsp">회원가입&nbsp;&nbsp;&nbsp;</a>
+	</div>
+	<%
+		} else {
+	%>
+	<div align="right" class="login">
+		<a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
+	</div>
+	<%
+		}
+	%>
+	</nav>
+
+	<div class="container"
+		style="padding-top: 350px; padding-bottom: 200px;">
+		<div style="padding-bottom: 30px;">
+			<div>
+				<a href="bbs.jsp"
+					style="background-color: #695d46; border: 2px solid #695d46"
+					class="btn btn-success pull-right">목록</a>
+			</div>
 			<%
-								if (userID != null && userID.equals(bbs.getUserID())) {
-							%>
-			<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
-			<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-				href="deleteAction.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">삭제</a>
+				if (userID != null && userID.equals(bbs.getUserID())) {
+			%>
+			<a href="update.jsp?bbsID=<%=bbsID%>"
+				style="background-color: #ff7846; border: 1px solid #ff7846;"
+				class="btn btn-primary">수정</a> <a
+				onclick="return confirm('정말로 삭제하시겠습니까?')"
+				href="deleteAction.jsp?bbsID=<%=bbsID%>"
+				style="background-color: #ff7846; border: 1px solid #ff7846;"
+				class="btn btn-primary">삭제</a>
 			<%
-								}
-							%>
+				}
+			%>
 		</div>
 		<div class="row">
 			<table class="table table-striped"
@@ -111,8 +114,8 @@
 				<thead>
 					<tr>
 						<th colspan="2"
-							style="background-color: #eeeeee; text-align: center;">게시판 글
-							보기</th>
+							style="background-color: #695d46; color: #ffffff; text-align: center;">게시판
+							글 보기</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -151,6 +154,13 @@
 					</tr>
 					<%
 						}
+						if (bbs.getBbsImage() != null) {
+					%>
+					<tr>
+						<td colspan="2"><img src="<%=bbs.getBbsImage()%>" style="max-width:1024px; height:auto;'"></td>
+					</tr>
+					<%
+						}
 					%>
 					<tr>
 						<td style="width: 20%">내용</td>
@@ -159,6 +169,7 @@
 					</tr>
 					<tr>
 						<td colspan="2"><a href="like.jsp?bbsID=<%=bbsID%>"
+							style="background-color: #ff7846; border: 1px solid #ff7846;"
 							class="btn btn-primary">추천<br /><%=bbs.getBbsLike()%></a></td>
 					</tr>
 				</tbody>
@@ -181,8 +192,8 @@
 									<td style="width: 60%;"><textarea class="form-control"
 											placeholder="댓글 내용" name="cmtContent" maxlength="200"
 											style="height: 80px;"></textarea></td>
-									<td style="width: 20%;"><input
-										style="width: 100%; height: 80px;" type="submit"
+									<td style="width: 20%;"><input type="submit"
+										style="width: 100%; height: 80px; background-color: #695d46; border: 2px solid #695d46"
 										class="btn btn-primary" value="댓글 작성"></td>
 								</tr>
 							</tbody>
@@ -211,13 +222,14 @@
 								<%
 									if (userID != null && userID.equals(list.get(i).getUserID())) {
 								%>
-								<td><a href="cmtUpdate.jsp?cmtID=<%=list.get(i).getCmtID()%>">수정</a> | <a
-									onclick="return confirm('정말로 삭제하시겠습니까?')"
+								<td><a
+									href="cmtUpdate.jsp?cmtID=<%=list.get(i).getCmtID()%>">수정</a> |
+									<a onclick="return confirm('정말로 삭제하시겠습니까?')"
 									href="cmtDeleteAction.jsp?cmtID=<%=list.get(i).getCmtID()%>">삭제</a></td>
 								<%
 									} else {
 								%>
-									<td colspan="2"></td>
+								<td colspan="2"></td>
 								<%
 									}
 								%>

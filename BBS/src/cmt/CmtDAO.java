@@ -163,6 +163,18 @@ public class CmtDAO {
 		return -1;//디비 오류
 	}
 	
+
+	public void reSort(int bbsID) {// 테이블 bbsID 재정렬
+		try {
+			String SQL = "UPDATE CMT SET bbsID = bbsID -1 WHERE bbsID > ?";
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public int countCmt(int bbsID) {//테이블의 총 row 개수를 리턴
 		int total_count = 0;
 		String SQL = "select count(bbsID) count from CMT WHERE bbsID = ?";

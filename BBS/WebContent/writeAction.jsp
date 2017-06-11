@@ -3,25 +3,27 @@
 <%@ page import="bbs.BbsDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%> 
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="java.io.File"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	String savePath = application.getRealPath("");
+	int maxSize = 5 * 1024 * 1024;
+	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8",
+			new DefaultFileRenamePolicy());
+
+	String imgName = null;
 %>
 
-<jsp:useBean id="bbs" class="bbs.Bbs" scope="page"></jsp:useBean>
-<jsp:setProperty property="bbsCategory" name="bbs" />
-<jsp:setProperty property="bbsTitle" name="bbs" />
-<jsp:setProperty property="bbsVideoSrc" name="bbs" />
-<jsp:setProperty property="bbsContent" name="bbs" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width-device-width" , initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>board</title>
+<title>No Food, No Life!</title>
 </head>
 <body>
 	<%
@@ -35,21 +37,33 @@
 			script.println("alert('로그인을 하세요.')");
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
-		}
-		else {
-			if (bbs.getBbsTitle()==null || bbs.getBbsContent()==null) {
+		} else {
+			if (multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null
+					||multi.getParameter("bbsTitle").equals("") || multi.getParameter("bbsContent").equals("")) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('입력되지 않은 사항이 있습니다.')");
+				script.println("alert('입력되지 않은 사항이 있습니다. ')");
 				script.println("history.back()");
 				script.println("</script>");
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
 				int result;
-				if(bbs.getBbsVideoSrc()!=null){
-					result = bbsDAO.write(bbs.getBbsCategory(), bbs.getBbsTitle(), userID, bbs.getBbsContent(), bbs.getBbsVideoSrc().replace("https://www.youtube.com/watch?v=", "").replace("https://youtu.be/", ""));
+
+				File imgFile = multi.getFile("bbsImage");
+				if(imgFile!=null) imgName = imgFile.getName();
+				
+				if(multi.getParameter("bbsVideoSrc").equals("")||multi.getParameter("bbsVideoSrc") == null) {
+					result = bbsDAO.write(multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"), userID,
+							multi.getParameter("bbsContent"), null, imgName);
 				}
-				else result = bbsDAO.write(bbs.getBbsCategory(), bbs.getBbsTitle(), userID, bbs.getBbsContent(), null);
+				else {
+					result = bbsDAO.write(multi.getParameter("bbsCategory"), multi.getParameter("bbsTitle"), userID,
+							multi.getParameter("bbsContent"),
+							multi.getParameter("bbsVideoSrc").replace("https://www.youtube.com/watch?v=", "")
+									.replace("https://youtu.be/", ""),
+							imgName);
+				} 
+
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
