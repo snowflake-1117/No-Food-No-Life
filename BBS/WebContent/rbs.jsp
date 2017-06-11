@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
-<%@ page import="cmt.CmtDAO"%>
+<%@ page import="rbs.RbsDAO"%>
+<%@ page import="rbs.Rbs"%>
+<%@ page import="rcmt.RcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,8 +40,8 @@ a, a:hover {
 	<ul class="nav">
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="active" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="notice.html">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -61,17 +61,20 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<nav>
-	<ul class="menu">
-		<li><a class="before" href="myRecipes.html">My recipes</a></li>
-		<li><a class="before" href="bestRecipes.html">Best recipes</a></li>
-		<li><a class="active" href="bbs.jsp">Free board</a></li>
-	</ul>
+	 <nav>
+         <ul class="menu">
+        <li><a class="before" href="rbsSimple.jsp">Simple</a></li>
+        <li><a class="before" href="rbsKorean.jsp">Korean</a></li>
+        <li><a class="before" href="rbsChinese.jsp">Chinese</a></li>
+        <li><a class="before" href="rbsJapanese.jsp">Japanese</a></li>
+        <li><a class="before" href="rbsWestern.jsp">Western</a></li>
+        <li><a class="before" href="rbsDesert.jsp">Desert</a></li>
+      </ul>
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
-		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="write.jsp" class="btn btn-success pull-right"
+		<div align="right" style="padding-top: 20px; padding-bottom:50px;">
+			<a href="rbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
 		<div class="row">
@@ -91,27 +94,23 @@ a, a:hover {
 							style="background-color: #695d46; width: 20%; text-align: center;">작성일</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
-						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-						BbsDAO bbsDAO = new BbsDAO();
-						CmtDAO cmtDAO = new CmtDAO();
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+						RbsDAO rbsDAO = new RbsDAO();
+						RcmtDAO rcmtDAO = new RcmtDAO();
+						ArrayList<Rbs> list = rbsDAO.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
-						<td><%=list.get(i).getBbsCategory()%></td>
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getBbsID())%>]
-						</a></td>
+						<td><%=list.get(i).getRbsID()%></td>
+						<td><%=list.get(i).getRbsCategory()%></td>
+						<td><a href="rbsView.jsp?rbsID=<%=list.get(i).getRbsID()%>"><%=list.get(i).getRbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=rcmtDAO.countRcmt(list.get(i).getRbsID())%>] </a></td>
 						<td><%=list.get(i).getUserID()%></td>
-						<td><%=list.get(i).getBbsDate().substring(0, 11)%></td>
-						<td><%=list.get(i).getBbsHit()%></td>
-						<td><%=list.get(i).getBbsLike()%></td>
+						<td><%=list.get(i).getRbsDate().substring(0, 11)%></td>
+						<td><%=list.get(i).getRbsHit()%></td>
 					</tr>
 					<%
 						}
@@ -122,30 +121,29 @@ a, a:hover {
 				<%
 					if (pageNumber != 1) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+				<a href="rbs.jsp?pageNumber=<%=pageNumber - 1%>"
 					class="btn btn-success pull-left"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">이전</a>
 				<%
 					}
 
 					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
-						if (i > 0 && bbsDAO.nextPage(i)) {
-							if (i == pageNumber) {
-				%>
-				<a href="bbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
-				</b></a>
+						if (i > 0 && rbsDAO.nextPage(i)) {
+							if(i==pageNumber){
+				%>		
+				<a href="rbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</b></a>
 				<%
-					} else {
-				%>
-				<a href="bbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
-				</a>
-				<%
+							}
+							else {
+								%>
+								<a href="rbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</a>
+								<%
+							}
 					}
-						}
 					}
-					if (bbsDAO.nextPage(pageNumber + 1)) {
+					if (rbsDAO.nextPage(pageNumber + 1)) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="rbs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success pull-right"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">다음</a>
 				<%
