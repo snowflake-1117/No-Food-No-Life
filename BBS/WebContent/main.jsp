@@ -55,7 +55,7 @@ a, a:hover {
 	<section class="carou">
 <div class="container"> 
 	<h1 style="font-family: 'Nanum Brush Script'; font-size: 60px; font-weight:bold">Today's recipes</h1> 
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000"> 
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000"> 
 		<ol class="carousel-indicators"> 
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
 			<li data-target="#myCarousel" data-slide-to="1" class=""></li> 
