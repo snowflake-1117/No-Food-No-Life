@@ -28,11 +28,11 @@ a, a:hover {
       <a href="main.jsp" style="text-decoration: none; color:#ff7846">No Food, No life!</a><br>
    	</header>
 	<nav align="center">
-      <ul class="nav" ><div>
-        <li><a href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a href="Recipes.html">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a href="notice.html">Notice&amp;QnA</a></li></ul>
+      <ul class="nav"><div>
+        <li><a href="introduce.jsp">Introduction</a></li>
+        <li><a href="Recipes.jsp">Recipe</a></li>
+        <li><a href="myRecipes.jsp">Community</a></li>
+        <li><a href="notice.jsp">Notice&amp;QnA</a></li></ul>
     </nav>
 		<%
 			if (userID == null) {
@@ -51,8 +51,41 @@ a, a:hover {
 			}
 		%>
 	</nav>
+	
+	<section class="carou">
+<div class="container"> 
+	<h1 style="font-family: 'Nanum Brush Script'; font-size: 60px; font-weight:bold">Today's recipes</h1> 
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000"> 
+		<ol class="carousel-indicators"> 
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li> 
+			<li data-target="#myCarousel" data-slide-to="1" class=""></li> 
+			<li data-target="#myCarousel" data-slide-to="2" class=""></li> 
+		</ol> 
+		<div class="carousel-inner" role="listbox"> 
+			<div class="item active"> 
+				<img src="img/1.jpg"> </div> 
+			<div class="item"> 
+				<img src="img/2.jpg"> </div> 
+			<div class="item"> 
+				<img src="img/3.jpg"></div> 
+		</div> 
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
+			<span class="sr-only">Previous</span> </a> 
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+			<span class="sr-only">Next</span> </a> 
+	</div> 
+	<hr> 
+	
+	</div>
 
+</section>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<footer class="footer" align="right">
+     <hr>
+     Copyright "No Food, No Life!" All Rights Reserved.
+   </footer>
 </body>
 </html>

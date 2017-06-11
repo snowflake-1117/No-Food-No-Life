@@ -36,18 +36,19 @@ nav{
 .nav {
   margin: 200px auto 0%;
   width:100%; 
-  vertical-align:middle;
-	position: absolute;
+  position: absolute;
   font-size: 30px;
-  padding-bottom:0px;
+  padding-bottom: -2px;
   border-bottom: 2px double #000000;
   
 }
-
+.active{
+   text-shadow: 0px 0px 3px #695d46;
+}
 .nav li{
   display: inline;
   list-style-type: none;
-   padding:0 10px;
+   padding:0 35px;
 }
 .nav li a {
  
@@ -60,9 +61,10 @@ nav{
    color: #feefe7;
    text-shadow: 0px 0px 3px #695d46;
 }
+
 .menu{
 	 
-  margin: 200px auto 0px;
+  margin: 205px auto 0px;
   width:100%; 
   position: absolute;
 
@@ -104,9 +106,14 @@ div div a:hover {
   color: #ff7846;
 }
 
-
+ .carousel-inner > .item > img {
+      top: 0;
+      left: 0;
+	  width:800px;
+	  height:500px;
+    } 
 .section {
-	
+	background:pink;
   width:800px; height:500px;
   position:absolute;
   margin-top:250px;
@@ -114,6 +121,17 @@ div div a:hover {
   vertical-align:middle;
   left:50%;
   margin-left:-400px;
+}
+.carou{
+	
+	width:1200px; height:600px;
+	position:absolute;
+	margin-top:230px;
+	left:50%;
+  	margin-left:-600px;
+	text-align:center;
+	verticarl-align:middle;
+	
 }
 
 .footer {
