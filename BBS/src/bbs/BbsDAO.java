@@ -9,64 +9,64 @@ import java.util.ArrayList;
 public class BbsDAO {
 	private Connection conn;
 	private ResultSet rs;
-	
-	public BbsDAO(){
-		try{
+
+	public BbsDAO() {
+		try {
 			String dbURL = "jdbc:mysql://localhost:3306/BBS?autoReconnect=true&useSSL=false";
 			String dbID = "root";
-			String dbPassword="1653";
+			String dbPassword = "1653";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public String getDate(){
+
+	public String getDate() {
 		String SQL = "SELECT NOW()";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				return rs.getString(1);
 			}
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "";
 	}
-	
-	public int getNext(){
+
+	public int getNext() {
 		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
-			if(rs.next()){
-				return rs.getInt(1)+1;
+			if (rs.next()) {
+				return rs.getInt(1) + 1;
 			}
-			return 1;//첫번째 게시물인 경우
-		} catch(Exception e){
+			return 1;// 첫번째 게시물인 경우
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;// 디비 오류
 	}
-	
-	public int like(int bbsID){
+
+	public int like(int bbsID) {
 		String SQL = "UPDATE BBS SET bbsLike = bbsLike+1 WHERE bbsID = ?";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  bbsID);
+			pstmt.setInt(1, bbsID);
 			return pstmt.executeUpdate();
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1;
 	}
 
-	public int write(String bbsCategory, String bbsTitle, String userID, String bbsContent, String bbsVideoSrc, String bbsImage){
+	public int write(String bbsCategory, String bbsTitle, String userID, String bbsContent, String bbsVideoSrc,
+			String bbsImage) {
 		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, bbsCategory);
@@ -80,31 +80,31 @@ public class BbsDAO {
 			pstmt.setInt(10, 0);
 			pstmt.setString(11, bbsImage);
 			return pstmt.executeUpdate();
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;// 디비 오류
 	}
-	
-	public void hit(int bbsID){
+
+	public void hit(int bbsID) {
 		String SQL = "UPDATE BBS SET bbsHit = bbsHit+1 WHERE bbsID = ?";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  bbsID);
+			pstmt.setInt(1, bbsID);
 			pstmt.executeUpdate();
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public ArrayList<Bbs> getList(int pageNumber){
+
+	public ArrayList<Bbs> getList(int pageNumber) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  getNext() - (pageNumber -1)*10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
-			while(rs.next()){
+			while (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsCategory(rs.getString(2));
@@ -119,33 +119,33 @@ public class BbsDAO {
 				bbs.setBbsImage(rs.getString(11));
 				list.add(bbs);
 			}
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	public boolean nextPage(int pageNumber){
+
+	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  getNext() - (pageNumber-1)*10);
-			rs=pstmt.executeQuery();
-			if(rs.next()) return true;
-		}
-		catch(Exception e){
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				return true;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
-	public Bbs getBbs(int bbsID){
+
+	public Bbs getBbs(int bbsID) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  bbsID);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
+			pstmt.setInt(1, bbsID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsCategory(rs.getString(2));
@@ -160,16 +160,16 @@ public class BbsDAO {
 				bbs.setBbsImage(rs.getString(11));
 				return bbs;
 			}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	public int update(int bbsID, String bbsCategory, String bbsTitle, String bbsContent, String bbsVideoSrc, String bbsImage){
+
+	public int update(int bbsID, String bbsCategory, String bbsTitle, String bbsContent, String bbsVideoSrc,
+			String bbsImage) {
 		String SQL = "UPDATE BBS SET bbsCategory = ?, bbsTitle = ?, bbsContent = ?, bbsVideoSrc = ?, bbsImage = ? WHERE bbsID = ?";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bbsCategory);
 			pstmt.setString(2, bbsTitle);
@@ -178,38 +178,36 @@ public class BbsDAO {
 			pstmt.setString(5, bbsImage);
 			pstmt.setInt(6, bbsID);
 			return pstmt.executeUpdate();
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;// 디비 오류
 	}
-	
-	public int delete(int bbsID){
+
+	public int delete(int bbsID) {
 		String SQL = "DELETE FROM BBS WHERE bbsID = ?";
-		try{
+		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, bbsID);
 			return pstmt.executeUpdate();
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;// 디비 오류
 	}
 
-	public void reSort(int count) {//테이블 bbsID 재정렬
-		while (count <= maxCount()) {
-			try {
-				String SQL = "UPDATE BBS SET bbsID = bbsID -1 WHERE bbsID > ?";
-				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				pstmt.setInt(1, count++);
-				pstmt.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	public void reSort(int bbsID) {// 테이블 bbsID 재정렬
+		try {
+			String SQL = "UPDATE BBS SET bbsID = bbsID -1 WHERE bbsID > ?";
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
-	public int maxCount() {//테이블의 총 row 개수를 리턴
+	/*public int maxCount() {// 테이블의 총 row 개수를 리턴
 		int total_count = 0;
 		String SQL = "select count(*) count from BBS";
 		try {
@@ -221,6 +219,6 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return -1;
-	}
+	}*/
 
 }

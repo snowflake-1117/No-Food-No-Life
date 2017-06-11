@@ -63,8 +63,9 @@
 					script.println("history.back()");
 					script.println("</script>");
 				} else {
-					bbsDAO.reSort(bbsID);//삭제 후 글 번호 재정렬
 					cmtDAO.deletePost(bbsID);//게시글에 존재하는 댓글 삭제
+					cmtDAO.reSort(bbsID);//삭제하는 게시글보다 bbsID 값이 큰 댓글 bbsID = bbsID-1 재정렬
+					bbsDAO.reSort(bbsID);//삭제 후 글 번호 재정렬
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
 					script.println("location.href='bbs.jsp'");
