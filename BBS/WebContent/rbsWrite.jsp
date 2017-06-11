@@ -51,9 +51,9 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 350px;" class="container" align="center">
+	<div style="padding-top: 350px; padding-bottom: 350px" class="container" align="center">
 		<div class="row">
-			<form method="post" action="writeAction.jsp" enctype="multipart/form-data">
+			<form method="post" action="rbsWriteAction.jsp" enctype="multipart/form-data">
 				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
@@ -67,10 +67,13 @@ a, a:hover {
 							<td style="width: 30%;">
 								<p>Category</p>
 							</td>
-							<td><select class="form-control" name="bbsCategory">
-									<option value="요리팁">요리팁</option>
-									<option value="요리질문">요리질문</option>
-									<option value="일상/잡답">일상/잡담</option>
+							<td><select class="form-control" name="rbsCategory">
+									<option value="간단요리">간단요리</option>
+									<option value="한식">한식</option>
+									<option value="중식">중식</option>
+									<option value="일식">일식</option>
+									<option value="양식">양식</option>
+									<option value="디저트">디저트</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -78,7 +81,7 @@ a, a:hover {
 								<p>제목</p>
 							</td>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bbsTitle" maxlength="50" /></td>
+								placeholder="글 제목" name="rbsTitle" maxlength="50" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
@@ -86,21 +89,21 @@ a, a:hover {
 							</td>
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="bbsVideoSrc" maxlength="200" /></td>
+								name="rbsVideoSrc" maxlength="200" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
 							<td><input type="file" class="form-control"
-								name="bbsImage" /></td>
+								name="rbsImage" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>내용</p>
 							</td>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="20000" style="height: 500px;"></textarea></td>
+									name="rbsContent" maxlength="20000" style="height: 500px;"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2"></td>

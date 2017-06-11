@@ -64,7 +64,7 @@ a, a:hover {
 	<ul class="nav">
 		<div>
 			<li><a href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="Recipes.html">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a href="notice.html">Notice&amp;QnA</a></li>
 	</ul>
@@ -223,7 +223,7 @@ a, a:hover {
 									if (userID != null && userID.equals(list.get(i).getUserID())) {
 								%>
 								<td><a
-									href="cmtUpdate.jsp?cmtID=<%=list.get(i).getCmtID()%>">수정</a> |
+									href="cmtUpdate.jsp?bbsID=<%=bbsID %>&cmtID=<%=list.get(i).getCmtID()%>">수정</a> |
 									<a onclick="return confirm('정말로 삭제하시겠습니까?')"
 									href="cmtDeleteAction.jsp?cmtID=<%=list.get(i).getCmtID()%>">삭제</a></td>
 								<%

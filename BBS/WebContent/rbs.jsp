@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
+<%@ page import="rbs.RbsDAO"%>
+<%@ page import="rbs.Rbs"%>
 <%@ page import="cmt.CmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,17 +61,20 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<nav>
-	<ul class="menu">
-		<li><a class="before" href="myRecipes.html">My recipes</a></li>
-		<li><a class="before" href="bestRecipes.html">Best recipes</a></li>
-		<li><a class="active" href="bbs.jsp">Free board</a></li>
-	</ul>
+	 <nav>
+         <ul class="menu">
+        <li><a class="before" href="Simple.html">Simple</a></li>
+        <li><a class="before" href="Korean.html">Korean</a></li>
+        <li><a class="before" href="Chinese.html">Chinese</a></li>
+        <li><a class="before" href="Japanese.html">Japanese</a></li>
+        <li><a class="before" href="Western.html">Western</a></li>
+        <li><a class="before" href="Desert.html">Desert</a></li>
+      </ul>
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
 		<div align="right" style="padding-top: 20px; padding-bottom:50px;">
-			<a href="write.jsp" class="btn btn-success pull-right"
+			<a href="rbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
 		<div class="row">
@@ -91,26 +94,23 @@ a, a:hover {
 							style="background-color: #695d46; width: 20%; text-align: center;">작성일</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
-						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-						BbsDAO bbsDAO = new BbsDAO();
+						RbsDAO rbsDAO = new RbsDAO();
 						CmtDAO cmtDAO = new CmtDAO();
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+						ArrayList<Rbs> list = rbsDAO.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
-						<td><%=list.get(i).getBbsCategory()%></td>
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getBbsID())%>] </a></td>
+						<td><%=list.get(i).getRbsID()%></td>
+						<td><%=list.get(i).getRbsCategory()%></td>
+						<td><a href="rbsView.jsp?rbsID=<%=list.get(i).getRbsID()%>"><%=list.get(i).getRbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getRbsID())%>] </a></td>
 						<td><%=list.get(i).getUserID()%></td>
-						<td><%=list.get(i).getBbsDate().substring(0, 11)%></td>
-						<td><%=list.get(i).getBbsHit()%></td>
-						<td><%=list.get(i).getBbsLike()%></td>
+						<td><%=list.get(i).getRbsDate().substring(0, 11)%></td>
+						<td><%=list.get(i).getRbsHit()%></td>
 					</tr>
 					<%
 						}
@@ -121,23 +121,23 @@ a, a:hover {
 				<%
 					if (pageNumber != 1) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+				<a href="rbs.jsp?pageNumber=<%=pageNumber - 1%>"
 					class="btn btn-success pull-left"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">이전</a>
 				<%
 					}
 
 					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
-						if (i > 0 && bbsDAO.nextPage(i)) {
+						if (i > 0 && rbsDAO.nextPage(i)) {
 				%>
 
-				<a href="bbs.jsp?pageNumber=<%=i%>"><%=i%></a>
+				<a href="rbs.jsp?pageNumber=<%=i%>"><%=i%></a>
 				<%
 					}
 					}
-					if (bbsDAO.nextPage(pageNumber + 1)) {
+					if (rbsDAO.nextPage(pageNumber + 1)) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="rbs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success pull-right"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">다음</a>
 				<%

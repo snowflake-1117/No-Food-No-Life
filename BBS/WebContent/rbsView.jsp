@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.Bbs"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="cmt.Cmt"%>
-<%@ page import="cmt.CmtDAO"%>
+<%@ page import="rbs.Rbs"%>
+<%@ page import="rbs.RbsDAO"%>
+<%@ page import="rcmt.Rcmt"%>
+<%@ page import="rcmt.RcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,41 +35,26 @@ a, a:hover {
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		}
-		int bbsID = 0;
-		if (request.getParameter("bbsID") != null) {
-			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		int rbsID = 0;
+		if (request.getParameter("rbsID") != null) {
+			rbsID = Integer.parseInt(request.getParameter("rbsID"));
 		}
-		if (bbsID == 0) {
+		if (rbsID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='bbs.jsp'");
+			script.println("location.href='rbs.jsp'");
 			script.println("</script>");
 		}
 
-		int cmtPageNumber = 1;
-		if (request.getParameter("cmtPageNumber") != null) {
-			cmtPageNumber = Integer.parseInt(request.getParameter("cmtPageNumber"));
+		int rcmtPageNumber = 1;
+		if (request.getParameter("rcmtPageNumber") != null) {
+			rcmtPageNumber = Integer.parseInt(request.getParameter("rcmtPageNumber"));
 		}
 
-		int cmtID = 0;
-		if (request.getParameter("cmtID") != null) {
-			cmtID = Integer.parseInt(request.getParameter("cmtID"));
-		}
-		if (cmtID == 0) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 댓글입니다.')");
-			script.println("location.href='bbs.jsp'");
-			script.println("</script>");
-		}
-
-		CmtDAO cmtDAO = new CmtDAO();
-		Cmt cmt = new CmtDAO().getCmt(cmtID);
-
-		BbsDAO bbsDAO = new BbsDAO();
-		bbsDAO.hit(bbsID);
-		Bbs bbs = new BbsDAO().getBbs(bbsID);
+		RbsDAO rbsDAO = new RbsDAO();
+		rbsDAO.hit(rbsID);
+		Rbs rbs = new RbsDAO().getRbs(rbsID);
 	%>
 
 	<header class="header"> <a href="main.jsp"
@@ -105,18 +90,18 @@ a, a:hover {
 		style="padding-top: 350px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
-				<a href="bbs.jsp"
+				<a href="rbs.jsp"
 					style="background-color: #695d46; border: 2px solid #695d46"
 					class="btn btn-success pull-right">목록</a>
 			</div>
 			<%
-				if (userID != null && userID.equals(bbs.getUserID())) {
+				if (userID != null && userID.equals(rbs.getUserID())) {
 			%>
-			<a href="update.jsp?bbsID=<%=bbsID%>"
+			<a href="rbsUpdate.jsp?rbsID=<%=rbsID%>"
 				style="background-color: #ff7846; border: 1px solid #ff7846;"
 				class="btn btn-primary">수정</a> <a
 				onclick="return confirm('정말로 삭제하시겠습니까?')"
-				href="deleteAction.jsp?bbsID=<%=bbsID%>"
+				href="rbsDeleteAction.jsp?rbsID=<%=rbsID%>"
 				style="background-color: #ff7846; border: 1px solid #ff7846;"
 				class="btn btn-primary">삭제</a>
 			<%
@@ -136,67 +121,59 @@ a, a:hover {
 				<tbody>
 					<tr>
 						<td style="width: 20%">카테고리</td>
-						<td><%=bbs.getBbsCategory()%></td>
+						<td><%=rbs.getRbsCategory()%></td>
 					</tr>
 					<tr>
 						<td style="width: 20%">글제목</td>
-						<td><%=bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+						<td><%=rbs.getRbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 					.replaceAll("\n", "<br/>")%></td>
 					</tr>
 					<tr>
 						<td style="width: 20%">작성일자</td>
-						<td><%=bbs.getBbsDate().substring(0, 16)%></td>
+						<td><%=rbs.getRbsDate().substring(0, 16)%></td>
 					</tr>
 					<tr>
 						<td style="width: 20%">작성자</td>
-						<td><%=bbs.getUserID()%></td>
+						<td><%=rbs.getUserID()%></td>
 					</tr>
 					<tr>
 						<td style="width: 20%">조회수</td>
-						<td><%=bbs.getBbsHit()%></td>
-					</tr>
-					<tr>
-						<td style="width: 20%">추천수</td>
-						<td><%=bbs.getBbsLike()%></td>
+						<td><%=rbs.getRbsHit()%></td>
 					</tr>
 					<%
-						if (bbs.getBbsVideoSrc() != null) {
+						if (rbs.getRbsVideoSrc() != null) {
 					%>
 					<tr>
 						<td colspan="2"><iframe width="640" height="360"
-								src="https://www.youtube.com/embed/<%=bbs.getBbsVideoSrc()%>"
+								src="https://www.youtube.com/embed/<%=rbs.getRbsVideoSrc()%>"
 								frameborder="0" allowfullscreen></iframe></td>
 					</tr>
 					<%
 						}
-						if (bbs.getBbsImage() != null) {
+						if (rbs.getRbsImage() != null) {
 					%>
 					<tr>
-						<td colspan="2"><img src="<%=bbs.getBbsImage()%>" style="max-width:1024px; height:auto;'"></td>
+						<td colspan="2"><img src="<%=rbs.getRbsImage()%>"
+							style="max-width: 1024px; height: auto;'"></td>
 					</tr>
 					<%
 						}
 					%>
 					<tr>
 						<td style="width: 20%">내용</td>
-						<td style="min-height: 200px; text-align: left;"><%=bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+						<td style="min-height: 200px; text-align: left;"><%=rbs.getRbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 					.replaceAll("\n", "<br/>")%></td>
-					</tr>
-					<tr>
-						<td colspan="2"><a href="like.jsp?bbsID=<%=bbsID%>"
-							style="background-color: #ff7846; border: 1px solid #ff7846;"
-							class="btn btn-primary">추천<br /><%=bbs.getBbsLike()%></a></td>
 					</tr>
 				</tbody>
 			</table>
-				<div class="container">
+			<div class="container">
 				<div class="row">
-					<form method="post" action="cmtUpdateAction.jsp?cmtID=<%=cmtID%>">
+					<form method="post" action="rcmtWriteAction.jsp">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd;">
 							<thead>
 								<tr>
-									<th colspan="3" style="background-color: #eeeeee;">댓글 수정</th>
+									<th colspan="3" style="background-color: #eeeeee;">댓글 작성</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -205,14 +182,15 @@ a, a:hover {
 										<p>댓글 내용</p>
 									</td>
 									<td style="width: 60%;"><textarea class="form-control"
-											placeholder="댓글 내용" name="cmtContent" maxlength="200"
-											style="height: 80px;"><%=cmt.getCmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
-													.replaceAll("\n", "<br/>") %></textarea></td>
-									<td style="width: 20%;"><input
-										style="width: 100%; height: 80px; background-color: #695d46; border: 2px solid #695d46;" type="submit"
-										class="btn btn-primary" value="댓글 수정"></td>
+											placeholder="댓글 내용" name="rcmtContent" maxlength="200"
+											style="height: 80px;"></textarea></td>
+									<td style="width: 20%;"><input type="submit"
+										style="width: 100%; height: 80px; background-color: #695d46; border: 2px solid #695d46"
+										class="btn btn-primary" value="댓글 작성"></td>
 								</tr>
 							</tbody>
+							<input style="display: none;" type="text" name="rbsID"
+								value="<%=rbsID%>">
 						</table>
 					</form>
 				</div>
@@ -224,21 +202,22 @@ a, a:hover {
 						style="text-align: center; border: 1px solid #dddddd">
 						<tbody>
 							<%
-								ArrayList<Cmt> list = cmtDAO.getList(cmtPageNumber);
+								RcmtDAO rcmtDAO = new RcmtDAO();
+								ArrayList<Rcmt> list = rcmtDAO.getList(rcmtPageNumber);
 								for (int i = 0; i < list.size(); i++) {
-									if (list.get(i).getBbsID() == bbsID && list.get(i).getCmtID() !=cmtID) {
+										if (list.get(i).getRbsID() == rbsID) {
 							%>
 							<tr>
-								<td style="width: 30%"><%=list.get(i).getUserID()%><br /><%=list.get(i).getCmtDate().substring(0, 16)%></td>
-								<td style="width: 60%;"><p style="text-align: left;"><%=list.get(i).getCmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-							.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></p></td>
+								<td style="width: 30%"><%=list.get(i).getUserID()%><br /><%=list.get(i).getRcmtDate().substring(0, 16)%></td>
+								<td style="width: 60%;"><p style="text-align: left;"><%=list.get(i).getRcmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></p></td>
 								<%
 									if (userID != null && userID.equals(list.get(i).getUserID())) {
 								%>
 								<td><a
-									href="cmtUpdate.jsp?cmtID=<%=list.get(i).getCmtID()%>">수정</a> |
+									href="rcmtUpdate.jsp?rbsID=<%=rbsID %>&rcmtID=<%=list.get(i).getRcmtID()%>">수정</a> |
 									<a onclick="return confirm('정말로 삭제하시겠습니까?')"
-									href="cmtDeleteAction.jsp?cmtID=<%=list.get(i).getCmtID()%>">삭제</a></td>
+									href="rcmtDeleteAction.jsp?rcmtID=<%=list.get(i).getRcmtID()%>">삭제</a></td>
 								<%
 									} else {
 								%>
