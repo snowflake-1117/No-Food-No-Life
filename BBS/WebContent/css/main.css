@@ -1,0 +1,187 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css');
+@import url(http://fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+html,body {
+  margin:0; padding:0; height:100%;
+}
+
+/*body align center*/
+
+html, body {
+	height: 100%;
+	width:100%;
+}
+
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  display: table-cell;
+ 
+}
+
+.header {
+	position: absolute;
+   width:900px;
+ font-family: 'Nanum Brush Script'; font-weight: bold; color: #ff7846; font-size: 110px;
+  margin-top: 50px;
+  margin-left:-450px;
+  left:50%;
+   text-align:center;
+}
+nav{
+	text-align:center;
+}
+
+.nav {
+  margin-top: 200px;
+  margin-left:-500px;
+  left:50%;
+  width:1000px; 
+  position: absolute;
+  font-size: 30px;
+  padding-bottom: -2px;
+  border-bottom: 2px double #000000;
+  
+}
+.active{
+   text-shadow: 0px 0px 3px #695d46;
+}
+.nav li{
+  display: inline;
+  list-style-type: none;
+   padding:0 35px;
+}
+.nav li a {
+ 
+  letter-spacing:-2px;
+  color:#695d46;
+  text-decoration: none;
+  
+}
+.nav li a:hover {
+   color: #feefe7;
+   text-shadow: 0px 0px 3px #695d46;
+}
+
+.menu{
+	 
+  margin: 205px auto 0px;
+  width:100%; 
+  position: absolute;
+
+  font-size: 20px;
+
+  
+}
+.menu li{
+	display: inline;
+	 list-style-type: none;
+	 padding:0 30px; 
+}
+.menu li a{
+	color:#333333;
+	text-decoration: none;
+}
+.menu li a:hover{
+	color: #feefe7;
+   text-shadow: 0px 0px 3px #695d46;
+}
+div.login{
+
+	width:100%;
+	margin: 10px 0%;
+}
+
+div p a {
+  text-decoration: none;
+  color: black;
+}
+div p a:hover {
+  color: #ff7846;
+}
+div div a {
+  text-decoration: none;
+  color: black;
+}
+div div a:hover {
+  color: #ff7846;
+}
+
+ .carousel-inner > .item > img {
+      top: 0;
+      left: 0;
+	  width:800px;
+	  height:500px;
+    } 
+.section {
+
+  width:800px; height:500px;
+  position:absolute;
+  margin-top:250px;
+  text-align:center;
+  vertical-align:middle;
+  left:50%;
+  margin-left:-400px;
+}
+
+td p{
+	padding-top:10px;
+	
+}
+.file_input label {
+	margin-top:5px;
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:100px;
+    height:30px;
+    background:#695d46;
+    border-radius:3px;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    align:left;
+    display:inline-block;
+    width:75%;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
+
+
+.carou{
+	
+	width:1200px; height:600px;
+	position:absolute;
+	margin-top:230px;
+	left:50%;
+  	margin-left:-600px;
+	text-align:center;
+	verticar-align:middle;
+	
+}
+
+.footer {
+  width:100%; clear: both;
+  height:7%;
+  margin: 1100px auto 0%;
+  color: #8C8C8C;
+  position:absolute;
+}

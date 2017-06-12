@@ -1,0 +1,202 @@
+/*div position: search form*/
+
+div.search {
+	padding-top: 20px;
+  width: 100%;
+  height: inherit;
+}
+
+
+/*div position: writing*/
+
+div.write {
+  position: absolute;
+  width: 70px;
+  height: inherit;
+}
+
+div.pageNum {
+	padding: 50px 10px;
+}
+
+/*clear*/
+
+clear {
+  height: 10%;
+  clear: both;
+}
+
+
+/*p writing*/
+
+button.writing {
+  width: 70px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 2px solid #695d46;
+  border-radius: 4px;
+  font-size: 15px;
+  color: white;
+  padding: 5px;
+  background-color: #695d46;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/*search input*/
+
+input[type=search] {
+  width: 150px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 2px solid #695d46;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #695d46;
+  background-color: white;
+  background-image: url('img/searchicon.png');
+  background-position: 5px 1px;
+  background-repeat: no-repeat;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+
+/*if user focus on search input*/
+
+input[type=search]:focus {
+  width: 60%;
+}
+
+
+/*input submit button*/
+
+input[name=searchSubmit] {
+  width: 100px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 2px solid #695d46;
+  border-radius: 4px;
+  font-size: 15px;
+  color: white;
+  background-color: #695d46;
+  cursor: pointer;
+}
+
+
+/*select title or content*/
+
+select[name=searchOption] {
+  height: 32px;
+  box-sizing: border-box;
+  border: 2px solid #695d46;
+  border-radius: 4px;
+  font-size: 15px;
+  color: white;
+  background-color: #695d46;
+  background-repeat: no-repeat;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+table {
+		border-collapse: collapse;
+}
+
+thead tr {
+  height: 50px;
+  border-radius: 4px;
+  padding: 50px 0px 5px 0px;
+  background-color: #ffffff;
+  border: #ff7846;
+  color: white;
+  text-align: center;
+	vertical-align: middle;
+}
+
+tbody tr {
+  height: 50px;
+  border-radius: 4px;
+  padding: 100px 0px 5px 100px;
+  background-color: white;
+  color: #000000;
+	border-bottom: 1px solid #695d46;
+  text-align: center;
+}
+
+
+/*design section QnA list*/
+
+section[name=QnAList] details {
+  border-radius: 4px;
+  background-color: white;
+  color: #ff7846;
+  padding: 10px 30px 10px 30px;
+}
+
+section {
+	padding-top: 100px;
+}
+/*if click summary*/
+
+details[open] summary {
+  border-radius: 4px;
+  background: white;
+  border:1px solid #ff7846;
+  color: #ff7846;
+}
+
+
+/*answer*/
+
+details summary {
+  font-size: 17px;
+  background: white;
+  color: #ff7846;
+  padding: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+
+/*delete default marker*/
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+
+/*before click summary: question mark icon*/
+
+details summary:before {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0 10px 0 0;
+  vertical-align: -50%;
+  content: "";
+  background-image: url('img/question.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+}
+
+
+/*after click summary: answer mark icon*/
+
+details[open] summary:before {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0 10px 0 0;
+  vertical-align: -50%;
+  content: "";
+  background-image: url('img/answer.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+}
+
+details p {
+  padding: 0 0 0 40px;
+}
