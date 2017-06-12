@@ -66,7 +66,7 @@ a, a:hover {
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="notice.html">Notice&amp;QnA</a></li>
+			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
@@ -95,7 +95,7 @@ a, a:hover {
 					class="btn btn-success pull-right">목록</a>
 			</div>
 			<%
-				if (userID != null && userID.equals(mrbs.getUserID())) {
+				if (userID != null && (userID.equals(mrbs.getUserID())||userID.equals("admin"))) {
 			%>
 			<a href="mrbsUpdate.jsp?mrbsID=<%=mrbsID%>"
 				style="background-color: #ff7846; border: 1px solid #ff7846;"
@@ -217,7 +217,7 @@ a, a:hover {
 								<td style="width: 60%;"><p style="text-align: left;"><%=list.get(i).getMrcmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></p></td>
 								<%
-									if (userID != null && userID.equals(list.get(i).getUserID())) {
+									if (userID != null && (userID.equals(list.get(i).getUserID())||userID.equals("admin"))) {
 								%>
 								<td><a
 									href="mrcmtUpdate.jsp?mrbsID=<%=mrbsID %>&mrcmtID=<%=list.get(i).getMrcmtID()%>">수정</a> |

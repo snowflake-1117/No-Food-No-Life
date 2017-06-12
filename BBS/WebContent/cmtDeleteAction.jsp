@@ -42,7 +42,7 @@
 		
 		Cmt cmt = new CmtDAO().getCmt(cmtID);
 		
-		if (!userID.equals(cmt.getUserID())) {
+		if (!userID.equals(cmt.getUserID())&&!userID.equals("admin")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");

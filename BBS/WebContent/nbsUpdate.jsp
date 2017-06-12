@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="mrbs.Mrbs"%>
-<%@ page import="mrbs.MrbsDAO"%>
+<%@ page import="nbs.Nbs"%>
+<%@ page import="nbs.NbsDAO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,25 +31,25 @@ a, a:hover {
 		script.println("location.href='login.jsp'");
 		script.println("</script>");
 	}
-	int mrbsID = 0;
-	if (request.getParameter("mrbsID") != null) {
-		mrbsID = Integer.parseInt(request.getParameter("mrbsID"));
+	int nbsID = 0;
+	if (request.getParameter("nbsID") != null) {
+		nbsID = Integer.parseInt(request.getParameter("nbsID"));
 	}
-	if (mrbsID == 0) {
+	if (nbsID == 0) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다.')");
-		script.println("location.href='mrbs.jsp'");
+		script.println("location.href='nbs.jsp'");
 		script.println("</script>");
 	}
 
-	Mrbs mrbs = new MrbsDAO().getMrbs(mrbsID);
+	Nbs nbs = new NbsDAO().getNbs(nbsID);
 
-	if (!userID.equals(mrbs.getUserID())&&!userID.equals("admin")) {
+	if (!userID.equals(nbs.getUserID())) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('권한이 없습니다.')");
-		script.println("location.href='mrbs.jsp'");
+		script.println("location.href='nbs.jsp'");
 		script.println("</script>");
 	}
 	%>
@@ -61,8 +61,8 @@ a, a:hover {
 	<ul class="nav">
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="mrbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mmrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="active" href="nbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="mnbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -84,7 +84,7 @@ a, a:hover {
 	</nav>
 	<div style="padding-top: 350px; padding-bottom:200px;" class="container" align="center">
 		<div class="row">
-			<form method="post" action="mrbsUpdateAction.jsp?mrbsID=<%=mrbsID%>" enctype="multipart/form-data">
+			<form method="post" action="nbsUpdateAction.jsp?nbsID=<%=nbsID%>" enctype="multipart/form-data">
 				<table class="table"
 					style="text-align: center;">
 					<thead>
@@ -97,52 +97,24 @@ a, a:hover {
 					<tbody>
 						<tr>
 							<td style="width: 30%;">
-								<p>Category</p>
-							</td>
-							<td><select class="form-control" name="mrbsCategory">
-									<option value="<%=mrbs.getMrbsCategory()%>"><%=mrbs.getMrbsCategory()%></option>
-									<option value="간단요리">간단요리</option>
-									<option value="한식">한식</option>
-									<option value="중식">중식</option>
-									<option value="일식">일식</option>
-									<option value="양식">양식</option>
-									<option value="디저트">디저트</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td style="width: 30%;">
 								<p>제목</p>
 							</td>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="mrbsTitle" maxlength="50" value="<%=mrbs.getMrbsTitle()%>"/></td>
-						</tr>
-						<tr>
-							<td style="width: 30%;">
-								<p>첨부할 동영상 링크</p>
-							</td>
-							<%if(mrbs.getMrbsVideoSrc() == null){ %>
-							<td><input type="url" class="form-control"
-								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="mrbsVideoSrc" maxlength="200"/></td>
-							<% } else {%>
-							<td><input type="url" class="form-control"
-								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="mrbsVideoSrc" maxlength="200"  value="https://youtu.be/<%=mrbs.getMrbsVideoSrc()%>"/></td>
-							<% }%>
+								placeholder="글 제목" name="nbsTitle" maxlength="50" value="<%=nbs.getNbsTitle()%>"/></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
 							<td><input type="file" class="form-control"
-								name="mrbsImage"/></td>
+								name="nbsImage"/></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>내용</p>
 							</td>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="mrbsContent" maxlength="20000" style="height: 500px;" ><%=mrbs.getMrbsContent()%></textarea></td>
+									name="nbsContent" maxlength="20000" style="height: 500px;" ><%=nbs.getNbsContent()%></textarea></td>
 						</tr>
 						<tr><td colspan="2"></td></tr>
 					</tbody>

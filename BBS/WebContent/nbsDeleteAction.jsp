@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="mrcmt.MrcmtDAO"%>
-<%@ page import="mrcmt.Mrcmt"%>
+<%@ page import="nbs.NbsDAO"%>
+<%@ page import="nbs.Nbs"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -28,41 +28,42 @@
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		}
-		int mrcmtID = 0;
-		if (request.getParameter("mrcmtID") != null) {
-			mrcmtID = Integer.parseInt(request.getParameter("mrcmtID"));
+		int nbsID = 0;
+		if (request.getParameter("nbsID") != null) {
+			nbsID = Integer.parseInt(request.getParameter("nbsID"));
 		}
-		if (mrcmtID == 0) {
+		if (nbsID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('유효하지 않은 댓글입니다.')");
-			script.println("location.href='mrbs.jsp'");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("location.href='nbs.jsp'");
 			script.println("</script>");
 		}
 		
-		Mrcmt mrcmt = new MrcmtDAO().getMrcmt(mrcmtID);
+		Nbs nbs = new NbsDAO().getNbs(nbsID);
 		
-		if (!userID.equals(mrcmt.getUserID())&&!userID.equals("admin")) {
+		if (!userID.equals(nbs.getUserID())) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");
-			script.println("location.href='mrbs.jsp'");
+			script.println("location.href='nbs.jsp'");
 			script.println("</script>");
 		}
 		else {
-			
-				MrcmtDAO mrcmtDAO = new MrcmtDAO();
-				int result = mrcmtDAO.delete(mrcmtID);
+				NbsDAO nbsDAO = new NbsDAO();
+				int result = nbsDAO.delete(nbsID);
+				
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("alert('댓글 삭제에 실패했습니다.')");
+					script.println("alert('글 삭제에 실패했습니다.')");
 					script.println("history.back()");
 					script.println("</script>");
 				} else {
+					nbsDAO.reSort(nbsID);//삭제 후 글 번호 재정렬
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
-					response.sendRedirect("mrbsView.jsp?mrbsID=" + mrcmt.getMrbsID());
+					script.println("location.href='nbs.jsp'");
 					script.println("</script>");
 				}
 			

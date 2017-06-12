@@ -42,7 +42,7 @@ a, a:hover {
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="notice.html">Notice&amp;QnA</a></li>
+			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
@@ -70,10 +70,16 @@ a, a:hover {
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
-		<div align="right" style="padding-top: 20px; padding-bottom:50px;">
+		<%
+			if (userID != null) {
+		%>
+		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="write.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
+		<%
+			}
+		%>
 		<div class="row">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
@@ -102,14 +108,15 @@ a, a:hover {
 						CmtDAO cmtDAO = new CmtDAO();
 						String searchOption = new String(request.getParameter("searchOption").getBytes("8859_1"), "euc-kr");
 						String searchInput = new String(request.getParameter("searchInput").getBytes("8859_1"), "euc-kr");
-						ArrayList<Mrbs> list = mrbsDAO.mrbsSearchList(pageNumber, searchOption, searchInput);	
+						ArrayList<Mrbs> list = mrbsDAO.mrbsSearchList(pageNumber, searchOption, searchInput);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
 						<td><%=list.get(i).getMrbsID()%></td>
 						<td><%=list.get(i).getMrbsCategory()%></td>
 						<td><a href="view.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getMrbsID())%>] </a></td>
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getMrbsID())%>]
+						</a></td>
 						<td><%=list.get(i).getUserID()%></td>
 						<td><%=list.get(i).getMrbsDate().substring(0, 11)%></td>
 						<td><%=list.get(i).getMrbsHit()%></td>
@@ -122,19 +129,20 @@ a, a:hover {
 			</table>
 		</div>
 		<div>
-			<form name="searchForm" method="post" action="mrbsSearch.jsp" style="padding-top: 50px;">
+			<form name="searchForm" method="post" action="mrbsSearch.jsp"
+				style="padding-top: 50px;">
 				<select name="searchOption">
 					<option value="mrbsTitle">제목</option>
 					<option value="mrbsContent">내용</option>
 					<option value="userId">글쓴이</option>
 					<option value="mrbsCategory">카테고리</option>
-				</select> 
-				<input name="searchInput" type="text" value="<%=searchInput%>" placeholder="검색할 내용을 입력" /> 
-				<input type="submit" name="searchSubmit" value="검색" />
+				</select> <input name="searchInput" type="text" value="<%=searchInput%>"
+					placeholder="검색할 내용을 입력" /> <input type="submit"
+					name="searchSubmit" value="검색" />
 			</form>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<script src="js/bootstrap.js"></script> 		
+		<script src="js/bootstrap.js"></script>
 </body>
 </html>
 </body>

@@ -51,7 +51,7 @@
 
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
 
-		if (!userID.equals(bbs.getUserID())) {
+		if (!userID.equals(bbs.getUserID())&&!userID.equals("admin")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");

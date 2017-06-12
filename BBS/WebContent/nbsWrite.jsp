@@ -22,6 +22,7 @@ a, a:hover {
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+
 	%>
 	<header class="header"> <a href="main.jsp"
 		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
@@ -31,8 +32,8 @@ a, a:hover {
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
+			<li><a class="before" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="active" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
@@ -51,9 +52,9 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 350px;" class="container" align="center">
+	<div style="padding-top: 350px; padding-bottom: 350px" class="container" align="center">
 		<div class="row">
-			<form method="post" action="writeAction.jsp" enctype="multipart/form-data">
+			<form method="post" action="nbsWriteAction.jsp" enctype="multipart/form-data">
 				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
@@ -65,42 +66,24 @@ a, a:hover {
 					<tbody>
 						<tr>
 							<td style="width: 30%;">
-								<p>Category</p>
-							</td>
-							<td><select class="form-control" name="bbsCategory">
-									<option value="요리팁">요리팁</option>
-									<option value="요리질문">요리질문</option>
-									<option value="일상/잡답">일상/잡담</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td style="width: 30%;">
 								<p>제목</p>
 							</td>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bbsTitle" maxlength="50" /></td>
-						</tr>
-						<tr>
-							<td style="width: 30%;">
-								<p>첨부할 동영상 링크</p>
-							</td>
-							<td><input type="url" class="form-control"
-								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="bbsVideoSrc" maxlength="200" /></td>
+								placeholder="글 제목" name="nbsTitle" maxlength="50" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
 							<td><input type="file" class="form-control"
-								name="bbsImage" /></td>
+								name="nbsImage" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>내용</p>
 							</td>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bbsContent" maxlength="20000" style="height: 500px;"></textarea></td>
+									name="nbsContent" maxlength="20000" style="height: 500px;"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2"></td>

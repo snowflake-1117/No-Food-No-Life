@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="mrbs.MrbsDAO"%>
-<%@ page import="mrbs.Mrbs"%>
+<%@ page import="nbs.NbsDAO"%>
+<%@ page import="nbs.Nbs"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="java.io.File"%>
@@ -37,53 +37,45 @@
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		}
-		int mrbsID = 0;
-		if (request.getParameter("mrbsID") != null) {
-			mrbsID = Integer.parseInt(request.getParameter("mrbsID"));
+		int nbsID = 0;
+		if (request.getParameter("nbsID") != null) {
+			nbsID = Integer.parseInt(request.getParameter("nbsID"));
 		}
-		if (mrbsID == 0) {
+		if (nbsID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href='mrbs.jsp'");
+			script.println("location.href='nbs.jsp'");
 			script.println("</script>");
 		}
 
-		Mrbs mrbs = new MrbsDAO().getMrbs(mrbsID);
+		Nbs nbs = new NbsDAO().getNbs(nbsID);
 
-		if (!userID.equals(mrbs.getUserID())&&!userID.equals("admin")) {
+		if (!userID.equals(nbs.getUserID())) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");
-			script.println("location.href='mrbs.jsp'");
+			script.println("location.href='nbs.jsp'");
 			script.println("</script>");
 		} else {
-			if (multi.getParameter("mrbsTitle") == null || multi.getParameter("mrbsContent") == null
-					|| multi.getParameter("mrbsTitle").equals("") || multi.getParameter("mrbsContent").equals("")) {
+			if (multi.getParameter("nbsTitle") == null || multi.getParameter("nbsContent") == null
+					|| multi.getParameter("nbsTitle").equals("") || multi.getParameter("nbsContent").equals("")) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않은 사항이 있습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 			} else {
-				MrbsDAO mrbsDAO = new MrbsDAO();
+				NbsDAO nbsDAO = new NbsDAO();
 
-				File imgFile = multi.getFile("mrbsImage");
+				File imgFile = multi.getFile("nbsImage");
 				if (imgFile != null)
 					imgName = imgFile.getName();
 
 				int result;
 
-				if (multi.getParameter("mrbsVideoSrc") == null || multi.getParameter("mrbsVideoSrc").equals("")) {
-					result = mrbsDAO.update(mrbsID, multi.getParameter("mrbsCategory"), multi.getParameter("mrbsTitle"),
-							multi.getParameter("mrbsContent"), null, imgName);
-				} else {
-					result = mrbsDAO.update(mrbsID, multi.getParameter("mrbsCategory"), multi.getParameter("mrbsTitle"),
-							multi.getParameter("mrbsContent"),
-							multi.getParameter("mrbsVideoSrc").replace("https://www.youtube.com/watch?v=", "")
-									.replace("https://youtu.be/", ""),
-							imgName);
-				}
+				result = nbsDAO.update(nbsID, multi.getParameter("nbsTitle"), multi.getParameter("nbsContent"),
+						imgName);
 
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
@@ -94,7 +86,7 @@
 				} else {
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
-					script.println("location.href='mrbs.jsp'");
+					script.println("location.href='nbs.jsp'");
 					script.println("</script>");
 				}
 			}
