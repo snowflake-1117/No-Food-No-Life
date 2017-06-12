@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="rbs.RbsDAO"%>
-<%@ page import="rbs.Rbs"%>
-<%@ page import="cmt.CmtDAO"%>
+<%@ page import="nbs.NbsDAO"%>
+<%@ page import="nbs.Nbs"%>
+<%@ page import="rcmt.RcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,26 +31,6 @@ a, a:hover {
 		if (request.getParameter("pageNumber") != null) {
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
-		
-		RbsDAO rbsDAO = new RbsDAO();
-		
-		ArrayList<Rbs> list = rbsDAO.getCategoryList("일식");
-		int totalPage = (int) Math.floor(list.size() / 10) + 1;
-		int countList = 10;
-		int countPage = 5;
-		int totalCount = list.size();
-
-		
-		if (totalPage < pageNumber) {
-			pageNumber = totalPage;
-		}
-
-		int startPage = ((pageNumber - 1) / 5) * 5 + 1;
-		int endPage = startPage + countPage - 1;
-
-		if (endPage > totalPage) {
-			endPage = totalPage;
-		}
 	%>
 
 	<header class="header"> <a href="main.jsp"
@@ -60,9 +40,9 @@ a, a:hover {
 	<ul class="nav">
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
+			<li><a class="active" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
@@ -81,20 +61,16 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<nav>
-	<ul class="menu">
-		<li><a class="before" href="rbsSimple.jsp">Simple</a></li>
-		<li><a class="before" href="rbsKorean.jsp">Korean</a></li>
-		<li><a class="before" href="rbsChinese.jsp">Chinese</a></li>
-		<li><a class="active" href="rbsJapanese.jsp">Japanese</a></li>
-		<li><a class="before" href="rbsWestern.jsp">Western</a></li>
-		<li><a class="before" href="rbsJapanese.jsp">Desert</a></li>
-	</ul>
+	 <nav>
+         <ul class="menu">
+        <li><a class="active" href="nbs.jsp">Notice</a></li>
+        <li><a class="before" href="qna.jsp">Q&A</a></li>
+      </ul>
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
-		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="rbsWrite.jsp" class="btn btn-success pull-right"
+		<div align="right" style="padding-top: 20px; padding-bottom:50px;">
+			<a href="nbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
 		<div class="row">
@@ -104,8 +80,6 @@ a, a:hover {
 					<tr>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">번호</th>
-						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">카테고리</th>
 						<th
 							style="background-color: #695d46; width: 30%; text-align: center;">제목</th>
 						<th
@@ -118,19 +92,18 @@ a, a:hover {
 				</thead>
 				<tbody>
 					<%
-						CmtDAO cmtDAO = new CmtDAO();						
-
-						for (int i = (pageNumber - 1) * 10; i < pageNumber * 10 && i < totalCount; i++) {
+						NbsDAO nbsDAO = new NbsDAO();
+						RcmtDAO rcmtDAO = new RcmtDAO();
+						ArrayList<Nbs> list = nbsDAO.getList(pageNumber);
+						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getRbsID()%></td>
-						<td><%=list.get(i).getRbsCategory()%></td>
-						<td><a href="rbsView.jsp?rbsID=<%=list.get(i).getRbsID()%>"><%=list.get(i).getRbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getRbsID())%>]
-						</a></td>
+						<td><%=list.get(i).getNbsID()%></td>
+						<td><a href="nbsView.jsp?nbsID=<%=list.get(i).getNbsID()%>"><%=list.get(i).getNbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></a></td>
 						<td><%=list.get(i).getUserID()%></td>
-						<td><%=list.get(i).getRbsDate().substring(0, 11)%></td>
-						<td><%=list.get(i).getRbsHit()%></td>
+						<td><%=list.get(i).getNbsDate().substring(0, 11)%></td>
+						<td><%=list.get(i).getNbsHit()%></td>
 					</tr>
 					<%
 						}
@@ -141,26 +114,29 @@ a, a:hover {
 				<%
 					if (pageNumber != 1) {
 				%>
-				<a href="rbsJapanese.jsp?pageNumber=<%=pageNumber - 1%>"
+				<a href="nbs.jsp?pageNumber=<%=pageNumber - 1%>"
 					class="btn btn-success pull-left"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">이전</a>
 				<%
 					}
 
-					for (int i = startPage; i <= endPage; i++) {
-						if (i == pageNumber) {
-				%>
-				<a href="rbsJapanese.jsp?pageNumber=<%=i%>"><b><%=i%></b></a>
+					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
+						if (i > 0 && nbsDAO.nextPage(i)) {
+							if(i==pageNumber){
+				%>		
+				<a href="nbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</b></a>
 				<%
-					} else {
-				%>
-				<a href="rbsJapanese.jsp?pageNumber=<%=i%>"><%=i%></a>
-				<%
+							}
+							else {
+								%>
+								<a href="nbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</a>
+								<%
+							}
 					}
 					}
-					if (pageNumber < totalPage) {
+					if (nbsDAO.nextPage(pageNumber + 1)) {
 				%>
-				<a href="rbsJapanese.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="nbs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success pull-right"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">다음</a>
 				<%
