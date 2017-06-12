@@ -63,8 +63,8 @@ a, a:hover {
 	</nav>
 	<nav>
 	<ul class="menu">
-		<li><a class="before" href="myRecipes.html">My recipes</a></li>
-		<li><a class="before" href="bestRecipes.html">Best recipes</a></li>
+		<li><a class="before" href="mrbs.jsp">My recipes</a></li>
+		<li><a class="before" href="best.jsp">Best recipes</a></li>
 		<li><a class="active" href="bbs.jsp">Free board</a></li>
 	</ul>
 	</nav>

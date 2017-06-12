@@ -102,7 +102,7 @@ a, a:hover {
 						CmtDAO cmtDAO = new CmtDAO();
 						String searchOption = new String(request.getParameter("searchOption").getBytes("8859_1"), "euc-kr");
 						String searchInput = new String(request.getParameter("searchInput").getBytes("8859_1"), "euc-kr");
-						ArrayList<Mrbs> list = mrbsDAO.mrbsSearchList(pageNumber, searchOption, searchInput);	
+						ArrayList<Mrbs> list = mrbsDAO.bestSearchList(pageNumber, searchOption, searchInput);	
 						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
@@ -122,7 +122,7 @@ a, a:hover {
 			</table>
 		</div>
 		<div>
-			<form name="searchForm" method="post" action="mrbsSearch.jsp" style="padding-top: 50px;">
+			<form name="searchForm" method="post" action="bestSearch.jsp" style="padding-top: 50px;">
 				<select name="searchOption">
 					<option value="mrbsTitle">제목</option>
 					<option value="mrbsContent">내용</option>

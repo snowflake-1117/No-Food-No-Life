@@ -122,7 +122,7 @@ a, a:hover {
 			</table>
 		</div>
 		<div>
-			<form name="searchForm" method="post" action="bestSearch.jsp" style="padding-top: 50px;">
+			<form name="searchForm" method="post" action="mrbsSearch.jsp" style="padding-top: 50px;">
 				<select name="searchOption">
 					<option value="mrbsTitle">제목</option>
 					<option value="mrbsContent">내용</option>
