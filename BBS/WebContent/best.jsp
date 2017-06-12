@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+	pageEncoding="euc-kr"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="mrbs.MrbsDAO"%>
 <%@ page import="mrbs.Mrbs"%>
@@ -68,13 +68,13 @@ a, a:hover {
 		if (userID == null) {
 	%>
 	<div align="right" class="login">
-		<a href="login.jsp">ë¡œê·¸ì¸</a> | <a href="join.jsp">íšŒì›ê°€ìž…&nbsp;&nbsp;&nbsp;</a>
+		<a href="login.jsp">·Î±×ÀÎ</a> | <a href="join.jsp">È¸¿ø°¡ÀÔ&nbsp;&nbsp;&nbsp;</a>
 	</div>
 	<%
 		} else {
 	%>
 	<div align="right" class="login">
-		<a href="logoutAction.jsp">ë¡œê·¸ì•„ì›ƒ&nbsp;&nbsp;&nbsp;</a>
+		<a href="logoutAction.jsp">·Î±×¾Æ¿ô&nbsp;&nbsp;&nbsp;</a>
 	</div>
 	<%
 		}
@@ -91,7 +91,7 @@ a, a:hover {
 		style="padding-top: 350px; padding-bottom: 100px;">
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="mrbsWrite.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">ê¸€ì“°ê¸°</a>
+				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">±Û¾²±â</a>
 		</div>
 		<div class="row">
 			<table class="table table-striped"
@@ -99,19 +99,19 @@ a, a:hover {
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">ë²ˆí˜¸</th>
+							style="background-color: #695d46; width: 10%; text-align: center;">¹øÈ£</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">ì¹´í…Œê³ ë¦¬</th>
+							style="background-color: #695d46; width: 10%; text-align: center;">Ä«Å×°í¸®</th>
 						<th
-							style="background-color: #695d46; width: 30%; text-align: center;">ì œëª©</th>
+							style="background-color: #695d46; width: 30%; text-align: center;">Á¦¸ñ</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">ìž‘ì„±ìž</th>
+							style="background-color: #695d46; width: 10%; text-align: center;">ÀÛ¼ºÀÚ</th>
 						<th
-							style="background-color: #695d46; width: 20%; text-align: center;">ìž‘ì„±ì¼</th>
+							style="background-color: #695d46; width: 20%; text-align: center;">ÀÛ¼ºÀÏ</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">ì¡°íšŒìˆ˜</th>
+							style="background-color: #695d46; width: 10%; text-align: center;">Á¶È¸¼ö</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">ì¶”ì²œìˆ˜</th>
+							style="background-color: #695d46; width: 10%; text-align: center;">ÃßÃµ¼ö</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -140,9 +140,9 @@ a, a:hover {
 				<%
 					if (pageNumber != 1) {
 				%>
-				<a href="rbsDesert.jsp?pageNumber=<%=pageNumber - 1%>"
+				<a href="best.jsp?pageNumber=<%=pageNumber - 1%>"
 					class="btn btn-success pull-left"
-					style="background-color: #ff7846; border: 1px solid #ff7846;">ì´ì „</a>
+					style="background-color: #ff7846; border: 1px solid #ff7846;">ÀÌÀü</a>
 				<%
 					}
 
@@ -163,22 +163,22 @@ a, a:hover {
 				%>
 				<a href="best.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success pull-right"
-					style="background-color: #ff7846; border: 1px solid #ff7846;">ë‹¤ìŒ</a>
+					style="background-color: #ff7846; border: 1px solid #ff7846;">´ÙÀ½</a>
 				<%
 					}
 				%>
 			</div>
 		</div>
 		<div>
-			<form name="searchForm" method="get" style="padding-top: 50px;">
+			<form name="searchForm" method="post" action="bestSearch.jsp" style="padding-top: 50px;">
 				<select name="searchOption">
-					<option value="title">ì œëª©</option>
-					<option value="content">ë‚´ìš©</option>
-					<option value="category">ì¹´í…Œê³ ë¦¬</option>
-					<option value="username">ê¸€ì“´ì´</option>
-				</select> <input name="searchInput" type="search" value=""
-					placeholder="ê²€ìƒ‰í•  ë‚´ìš©ì„ ìž…ë ¥" /> <input type="submit"
-					name="searchSubmit" value="ê²€ìƒ‰" />
+					<option value="mrbsTitle">Á¦¸ñ</option>
+					<option value="mrbsContent">³»¿ë</option>
+					<option value="userId">±Û¾´ÀÌ</option>
+					<option value="mrbsCategory">Ä«Å×°í¸®</option>
+				</select> 
+				<input name="searchInput" type="text" value="" placeholder="°Ë»öÇÒ ³»¿ëÀ» ÀÔ·Â" /> 
+				<input type="submit" name="searchSubmit" value="°Ë»ö" />
 			</form>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

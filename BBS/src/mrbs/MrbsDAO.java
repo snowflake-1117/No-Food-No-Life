@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import mrbs.Mrbs;
-
 public class MrbsDAO {
 	private Connection conn;
 	private ResultSet rs;
@@ -141,6 +139,62 @@ public class MrbsDAO {
 		}
 		return list;
 	}
+	
+	public ArrayList<Mrbs> mrbsSearchList(int pageNumber, String searchOption, String searchInput){
+		String SQL = "SELECT * FROM MRBS WHERE "+searchOption+" LIKE ? ORDER BY mrbsID DESC";
+		ArrayList<Mrbs> list = new ArrayList<Mrbs>();
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, "%"+searchInput+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Mrbs mrbs = new Mrbs();
+				mrbs.setMrbsID(rs.getInt(1));
+				mrbs.setMrbsCategory(rs.getString(2));
+				mrbs.setMrbsTitle(rs.getString(3));
+				mrbs.setUserID(rs.getString(4));
+				mrbs.setMrbsDate(rs.getString(5));
+				mrbs.setMrbsContent(rs.getString(6));
+				mrbs.setMrbsAvailable(rs.getInt(7));
+				mrbs.setMrbsHit(rs.getInt(8));
+				mrbs.setMrbsVideoSrc(rs.getString(9));
+				mrbs.setMrbsLike(rs.getInt(10));
+				mrbs.setMrbsImage(rs.getString(11));
+				list.add(mrbs);
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
+	}	
+	
+	public ArrayList<Mrbs> bestSearchList(int pageNumber, String searchOption, String searchInput){
+		String SQL = "SELECT * FROM MRBS WHERE "+searchOption+" LIKE ? AND mrbsLike>=10 ORDER BY mrbsID DESC";
+		ArrayList<Mrbs> list = new ArrayList<Mrbs>();
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, "%"+searchInput+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Mrbs mrbs = new Mrbs();
+				mrbs.setMrbsID(rs.getInt(1));
+				mrbs.setMrbsCategory(rs.getString(2));
+				mrbs.setMrbsTitle(rs.getString(3));
+				mrbs.setUserID(rs.getString(4));
+				mrbs.setMrbsDate(rs.getString(5));
+				mrbs.setMrbsContent(rs.getString(6));
+				mrbs.setMrbsAvailable(rs.getInt(7));
+				mrbs.setMrbsHit(rs.getInt(8));
+				mrbs.setMrbsVideoSrc(rs.getString(9));
+				mrbs.setMrbsLike(rs.getInt(10));
+				mrbs.setMrbsImage(rs.getString(11));
+				list.add(mrbs);
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return list;
+	}	
 	
 	public boolean nextPage(int pageNumber) {
 		String SQL = "SELECT * FROM MRBS WHERE mrbsID < ? AND mrbsAvailable = 1";

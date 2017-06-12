@@ -126,7 +126,7 @@ public class BbsDAO {
 	}
 	
 	public ArrayList<Bbs> searchList(int pageNumber, String searchOption, String searchInput){
-		String SQL = "SELECT * FROM BBS WHERE "+searchOption+" LIKE ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		String SQL = "SELECT * FROM BBS WHERE "+searchOption+" LIKE ? AND bbsAvailable = 1 ORDER BY bbsID DESC";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -154,7 +154,6 @@ public class BbsDAO {
 		}
 		return list;
 	}	
-	
 	public boolean nextPage(int pageNumber){
 		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1";
 		try{

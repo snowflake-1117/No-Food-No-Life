@@ -155,15 +155,15 @@ a, a:hover {
 			</div>
 		</div>
 		<div>
-			<form name="searchForm" method="get" style="padding-top: 50px;">
-				<select name="searchOption">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-					<option value="category">카테고리</option>
-					<option value="username">글쓴이</option>
-				</select> <input name="searchInput" type="search" value=""
-					placeholder="검색할 내용을 입력" /> <input type="submit"
-					name="searchSubmit" value="검색" />
+			<form name="searchForm" method="post" action="mrbsSearch.jsp" style="padding-top: 50px;">
+				<select name="searchOption"> 
+					<option value="bbsTitle">제목</option>
+					<option value="bbsContent">내용</option>
+					<option value="userId">글쓴이</option>
+					<option value="bbsCategory">카테고리</option>
+				</select> 
+				<input name="searchInput" type="text" value="" placeholder="검색할 내용을 입력" /> 
+				<input type="submit" name="searchSubmit" value="검색" />
 			</form>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
