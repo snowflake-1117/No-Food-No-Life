@@ -42,7 +42,7 @@
 		
 		Rcmt rcmt = new RcmtDAO().getRcmt(rcmtID);
 		
-		if (!userID.equals(rcmt.getUserID())) {
+		if (!userID.equals(rcmt.getUserID())&&!userID.equals("admin")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");

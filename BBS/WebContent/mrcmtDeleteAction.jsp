@@ -42,7 +42,7 @@
 		
 		Mrcmt mrcmt = new MrcmtDAO().getMrcmt(mrcmtID);
 		
-		if (!userID.equals(mrcmt.getUserID())) {
+		if (!userID.equals(mrcmt.getUserID())&&!userID.equals("admin")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다.')");

@@ -61,22 +61,28 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	 <nav>
-         <ul class="menu">
-        <li><a class="before" href="rbsSimple.jsp">Simple</a></li>
-        <li><a class="before" href="rbsKorean.jsp">Korean</a></li>
-        <li><a class="before" href="rbsChinese.jsp">Chinese</a></li>
-        <li><a class="before" href="rbsJapanese.jsp">Japanese</a></li>
-        <li><a class="before" href="rbsWestern.jsp">Western</a></li>
-        <li><a class="before" href="rbsDesert.jsp">Desert</a></li>
-      </ul>
+	<nav>
+	<ul class="menu">
+		<li><a class="before" href="rbsSimple.jsp">Simple</a></li>
+		<li><a class="before" href="rbsKorean.jsp">Korean</a></li>
+		<li><a class="before" href="rbsChinese.jsp">Chinese</a></li>
+		<li><a class="before" href="rbsJapanese.jsp">Japanese</a></li>
+		<li><a class="before" href="rbsWestern.jsp">Western</a></li>
+		<li><a class="before" href="rbsDesert.jsp">Desert</a></li>
+	</ul>
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
-		<div align="right" style="padding-top: 20px; padding-bottom:50px;">
+		<%
+			if (userID != null&&userID.equals("admin")) {
+		%>
+		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="rbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
+		<%
+			}
+		%>
 		<div class="row">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
@@ -107,7 +113,8 @@ a, a:hover {
 						<td><%=list.get(i).getRbsID()%></td>
 						<td><%=list.get(i).getRbsCategory()%></td>
 						<td><a href="rbsView.jsp?rbsID=<%=list.get(i).getRbsID()%>"><%=list.get(i).getRbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=rcmtDAO.countRcmt(list.get(i).getRbsID())%>] </a></td>
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=rcmtDAO.countRcmt(list.get(i).getRbsID())%>]
+						</a></td>
 						<td><%=list.get(i).getUserID()%></td>
 						<td><%=list.get(i).getRbsDate().substring(0, 11)%></td>
 						<td><%=list.get(i).getRbsHit()%></td>
@@ -129,17 +136,18 @@ a, a:hover {
 
 					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
 						if (i > 0 && rbsDAO.nextPage(i)) {
-							if(i==pageNumber){
-				%>		
-				<a href="rbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</b></a>
+							if (i == pageNumber) {
+				%>
+				<a href="rbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				</b></a>
 				<%
-							}
-							else {
-								%>
-								<a href="rbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</a>
-								<%
-							}
+					} else {
+				%>
+				<a href="rbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				</a>
+				<%
 					}
+						}
 					}
 					if (rbsDAO.nextPage(pageNumber + 1)) {
 				%>

@@ -61,18 +61,24 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	 <nav>
-         <ul class="menu">
-        <li><a class="active" href="nbs.jsp">Notice</a></li>
-        <li><a class="before" href="qna.jsp">Q&A</a></li>
-      </ul>
+	<nav>
+	<ul class="menu">
+		<li><a class="active" href="nbs.jsp">Notice</a></li>
+		<li><a class="before" href="qna.jsp">Q&A</a></li>
+	</ul>
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
-		<div align="right" style="padding-top: 20px; padding-bottom:50px;">
+		<%
+			if (userID!=null && userID.equals("admin")) {
+		%>
+		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="nbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
+		<%
+			}
+		%>
 		<div class="row">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
@@ -122,17 +128,18 @@ a, a:hover {
 
 					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
 						if (i > 0 && nbsDAO.nextPage(i)) {
-							if(i==pageNumber){
-				%>		
-				<a href="nbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</b></a>
+							if (i == pageNumber) {
+				%>
+				<a href="nbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				</b></a>
 				<%
-							}
-							else {
-								%>
-								<a href="nbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;</a>
-								<%
-							}
+					} else {
+				%>
+				<a href="nbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				</a>
+				<%
 					}
+						}
 					}
 					if (nbsDAO.nextPage(pageNumber + 1)) {
 				%>

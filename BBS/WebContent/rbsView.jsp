@@ -28,13 +28,6 @@ a, a:hover {
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		if (userID == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 하세요.')");
-			script.println("location.href='login.jsp'");
-			script.println("</script>");
-		}
 		int rbsID = 0;
 		if (request.getParameter("rbsID") != null) {
 			rbsID = Integer.parseInt(request.getParameter("rbsID"));
@@ -95,7 +88,7 @@ a, a:hover {
 					class="btn btn-success pull-right">목록</a>
 			</div>
 			<%
-				if (userID != null && userID.equals(rbs.getUserID())) {
+				if (userID != null && userID.equals("admin")) {
 			%>
 			<a href="rbsUpdate.jsp?rbsID=<%=rbsID%>"
 				style="background-color: #ff7846; border: 1px solid #ff7846;"
@@ -212,7 +205,7 @@ a, a:hover {
 								<td style="width: 60%;"><p style="text-align: left;"><%=list.get(i).getRcmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></p></td>
 								<%
-									if (userID != null && userID.equals(list.get(i).getUserID())) {
+									if (userID != null && (userID.equals(list.get(i).getUserID())||userID.equals("admin"))) {
 								%>
 								<td><a
 									href="rcmtUpdate.jsp?rbsID=<%=rbsID %>&rcmtID=<%=list.get(i).getRcmtID()%>">수정</a> |

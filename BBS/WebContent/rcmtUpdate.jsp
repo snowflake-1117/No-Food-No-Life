@@ -224,7 +224,7 @@ a, a:hover {
 								<td style="width: 60%;"><p style="text-align: left;"><%=list.get(i).getRcmtContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 							.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></p></td>
 								<%
-									if (userID != null && userID.equals(list.get(i).getUserID())) {
+									if (userID != null && (userID.equals(list.get(i).getUserID())||userID.equals("admin"))) {
 								%>
 								<td><a
 									href="rcmtUpdate.jsp?rcmtID=<%=list.get(i).getRcmtID()%>">수정</a> |
