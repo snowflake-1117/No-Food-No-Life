@@ -34,7 +34,7 @@ a, a:hover {
 			<li><a href="introduce.jsp">Introduction</a></li>
 			<li><a href="rbs.jsp">Recipe</a></li>
 			<li><a href="mrbs.jsp">Community</a></li>
-			<li><a href="notice.jsp">Notice&amp;QnA</a></li>
+			<li><a href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
