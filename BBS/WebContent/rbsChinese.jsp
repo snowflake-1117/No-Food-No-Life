@@ -87,7 +87,7 @@ a, a:hover {
 		<li><a class="active" href="rbsChinese.jsp">Chinese</a></li>
 		<li><a class="before" href="rbsJapanese.jsp">Japanese</a></li>
 		<li><a class="before" href="rbsWestern.jsp">Western</a></li>
-		<li><a class="before" href="rbsDesert.jsp">Desert</a></li>
+		<li><a class="before" href="rbsChinese.jsp">Desert</a></li>
 	</ul>
 	</nav>
 	<div class="container" align="center"
@@ -140,7 +140,7 @@ a, a:hover {
 				<%
 					if (pageNumber != 1) {
 				%>
-				<a href="rbsDesert.jsp?pageNumber=<%=pageNumber - 1%>"
+				<a href="rbsChinese.jsp?pageNumber=<%=pageNumber - 1%>"
 					class="btn btn-success pull-left"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">이전</a>
 				<%
@@ -149,19 +149,19 @@ a, a:hover {
 					for (int i = startPage; i <= endPage; i++) {
 						if (i == pageNumber) {
 				%>
-				<a href="rbsDesert.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				<a href="rbsChinese.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
 				</b></a>
 				<%
 					} else {
 				%>
-				<a href="rbsDesert.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				<a href="rbsChinese.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
 				</a>
 				<%
 					}
 					}
 					if (pageNumber < totalPage) {
 				%>
-				<a href="rbsDesert.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="rbsChinese.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success pull-right"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">다음</a>
 				<%

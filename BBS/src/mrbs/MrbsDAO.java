@@ -116,12 +116,11 @@ public class MrbsDAO {
 		return list;
 	}
 
-	public ArrayList<Mrbs> getCategoryList(String mrbsCategory) {
-		String SQL = "SELECT * FROM MRBS WHERE mrbsCategory = ? ORDER BY mrbsID DESC";
+	public ArrayList<Mrbs> getBestList() {
+		String SQL = "SELECT * FROM MRBS WHERE mrbsLike>=10 ORDER BY mrbsID DESC";
 		ArrayList<Mrbs> list = new ArrayList<Mrbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, mrbsCategory);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Mrbs mrbs = new Mrbs();
