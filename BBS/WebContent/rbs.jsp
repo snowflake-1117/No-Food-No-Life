@@ -55,7 +55,7 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
-		<a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
+		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
 	</div>
 	<%
 		}
