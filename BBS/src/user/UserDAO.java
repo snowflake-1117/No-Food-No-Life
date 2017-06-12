@@ -2,6 +2,9 @@ package user;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+
+import user.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -21,6 +24,43 @@ public class UserDAO {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+
+	public int update(String userPassword, String userEmail, String userID){
+		String SQL = "UPDATE USER SET userPassword=?, userEmail=? WHERE userID = ?";
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userPassword);
+			pstmt.setString(2, userEmail);
+			pstmt.setString(3, userID);
+			return pstmt.executeUpdate();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	
+	public User getUser(String userID){
+		String SQL = "SELECT * FROM USER WHERE userID = ?";
+		try{
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1,  userID);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserEmail(rs.getString(4));
+				return user;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public int login(String userID, String userPassword){
