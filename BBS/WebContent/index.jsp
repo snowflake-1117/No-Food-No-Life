@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width" name="viewport" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>게시판</title>
+<title>No Food, No Life!</title>
 </head>
 <body>
 	<script>location.href='main.jsp'</script>

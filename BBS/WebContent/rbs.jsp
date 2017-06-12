@@ -39,7 +39,7 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a class="before" href="introduce.html">Introduction</a></li>
+			<li><a class="before" href="introduction.jsp">Introduction</a></li>
 			<li><a class="active" href="rbs.jsp">Recipe</a></li>
 			<li><a class="before" href="mrbs.jsp">Community</a></li>
 			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
@@ -55,7 +55,17 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
-		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
+		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
+			if (userID != null && userID.equals("admin")) {
+		%>
+		</a> | <a href="memberInfo.jsp">회원관리&nbsp;&nbsp;&nbsp;</a>
+		<%
+			} else {
+		%>
+		&nbsp;&nbsp;&nbsp;</a>
+		<%
+			}
+		%>
 	</div>
 	<%
 		}

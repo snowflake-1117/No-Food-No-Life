@@ -2,9 +2,8 @@ package user;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 import user.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -26,6 +25,26 @@ public class UserDAO {
 		}
 	}
 	
+	public ArrayList<User> getList() {
+		String SQL = "SELECT * FROM USER";
+		ArrayList<User> list = new ArrayList<User>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			//pstmt.setInt(1,  getNext() - (pageNumber -1)*10);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				User user = new User();
+				user.setUserID(rs.getString(1));
+				user.setUserPassword(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserEmail(rs.getString(4));
+				list.add(user);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	public int update(String userPassword, String userEmail, String userID){
 		String SQL = "UPDATE USER SET userPassword=?, userEmail=? WHERE userID = ?";

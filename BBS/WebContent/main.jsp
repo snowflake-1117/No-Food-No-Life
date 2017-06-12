@@ -25,8 +25,7 @@ a, a:hover {
 	%>
 
 	<header class="header"> <a href="main.jsp"
-		style="text-decoration: none; color: #ff7846">No Food, No life!</a>
-	<br>
+		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
 	</header>
 	<nav align="center">
 	<ul class="nav">
@@ -47,7 +46,17 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
-		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
+		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
+			if (userID != null && userID.equals("admin")) {
+		%>
+		</a> | <a href="memberInfo.jsp">회원관리&nbsp;&nbsp;&nbsp;</a>
+		<%
+			} else {
+		%>
+		&nbsp;&nbsp;&nbsp;</a>
+		<%
+			}
+		%>
 	</div>
 	<%
 		}
@@ -55,7 +64,7 @@ a, a:hover {
 	</nav>
 
 	<section class="carou">
-	<div class="container" style="padding-top:50px;">
+	<div class="container" style="padding-top: 50px;">
 		<h1
 			style="font-family: 'Nanum Brush Script'; font-size: 60px; font-weight: bold">Today's
 			recipes</h1>
@@ -88,7 +97,6 @@ a, a:hover {
 			</a>
 		</div>
 		<hr>
-
 	</div>
 
 	</section>

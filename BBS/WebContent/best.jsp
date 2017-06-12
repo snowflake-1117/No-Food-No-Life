@@ -75,7 +75,17 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
-		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
+		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
+			if (userID != null && userID.equals("admin")) {
+		%>
+		</a> | <a href="memberInfo.jsp">회원관리&nbsp;&nbsp;&nbsp;</a>
+		<%
+			} else {
+		%>
+		&nbsp;&nbsp;&nbsp;</a>
+		<%
+			}
+		%>
 	</div>
 	<%
 		}
@@ -95,12 +105,11 @@ a, a:hover {
 				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<div class="row">
-			<table class="table table-striped"
-				style="text-align: center;">
+			<table class="table table-striped" style="text-align: center;">
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center; border-radius:15px 0 0 0;">번호</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 15px 0 0 0;">번호</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">카테고리</th>
 						<th
@@ -112,7 +121,7 @@ a, a:hover {
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;border-radius: 0 15px 0 0;">추천수</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 0 15px 0 0;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -56,7 +56,17 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
-		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃&nbsp;&nbsp;&nbsp;</a>
+		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
+			if (userID != null && userID.equals("admin")) {
+		%>
+		</a> | <a href="memberInfo.jsp">회원관리&nbsp;&nbsp;&nbsp;</a>
+		<%
+			} else {
+		%>
+		&nbsp;&nbsp;&nbsp;</a>
+		<%
+			}
+		%>
 	</div>
 	<%
 		}
