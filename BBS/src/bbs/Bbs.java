@@ -10,6 +10,8 @@ public class Bbs {
 	private String bbsVideoSrc;
 	private int bbsLike;
 	private String bbsImage;
+	private int bbsAvailable;
+	private int bbsHit;
 
 	public String getBbsImage() {
 		return bbsImage;
@@ -29,8 +31,6 @@ public class Bbs {
 	public void setBbsVideoSrc(String bbsVideoSrc) {
 		this.bbsVideoSrc = bbsVideoSrc;
 	}
-	private int bbsAvailable;
-	private int bbsHit;
 	
 	public int getBbsID() {
 		return bbsID;

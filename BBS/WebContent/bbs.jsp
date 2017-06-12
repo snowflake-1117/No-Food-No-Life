@@ -41,7 +41,7 @@ a, a:hover {
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="notice.html">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -63,8 +63,8 @@ a, a:hover {
 	</nav>
 	<nav>
 	<ul class="menu">
-		<li><a class="before" href="myRecipes.html">My recipes</a></li>
-		<li><a class="before" href="bestRecipes.html">Best recipes</a></li>
+		<li><a class="before" href="mrbs.jsp">My recipes</a></li>
+		<li><a class="before" href="best.jsp">Best recipes</a></li>
 		<li><a class="active" href="bbs.jsp">Free board</a></li>
 	</ul>
 	</nav>
