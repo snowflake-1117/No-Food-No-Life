@@ -22,7 +22,6 @@ a, a:hover {
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-
 	%>
 	<header class="header"> <a href="main.jsp"
 		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
@@ -52,9 +51,11 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 350px" class="container" align="center">
+	<div style="padding-top: 350px; padding-bottom: 350px"
+		class="container" align="center">
 		<div class="row">
-			<form method="post" action="nbsWriteAction.jsp" enctype="multipart/form-data">
+			<form method="post" action="nbsWriteAction.jsp"
+				enctype="multipart/form-data">
 				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
@@ -75,8 +76,7 @@ a, a:hover {
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
-							<td><input type="file" class="form-control"
-								name="nbsImage" /></td>
+							<td><input type="file" name="nbsImage" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">

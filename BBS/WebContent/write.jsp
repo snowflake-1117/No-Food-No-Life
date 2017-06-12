@@ -92,7 +92,7 @@ a, a:hover {
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
-							<td><input type="file" class="form-control"
+							<td><input type="file"
 								name="bbsImage" /></td>
 						</tr>
 						<tr>

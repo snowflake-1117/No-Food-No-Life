@@ -20,49 +20,48 @@ a, a:hover {
 </head>
 <body>
 	<%
-	String userID = null;
-	if (session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
-	}
-	if (userID == null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인을 하세요.')");
-		script.println("location.href='login.jsp'");
-		script.println("</script>");
-	}
-	int mrbsID = 0;
-	if (request.getParameter("mrbsID") != null) {
-		mrbsID = Integer.parseInt(request.getParameter("mrbsID"));
-	}
-	if (mrbsID == 0) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('유효하지 않은 글입니다.')");
-		script.println("location.href='mrbs.jsp'");
-		script.println("</script>");
-	}
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		if (userID == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 하세요.')");
+			script.println("location.href='login.jsp'");
+			script.println("</script>");
+		}
+		int mrbsID = 0;
+		if (request.getParameter("mrbsID") != null) {
+			mrbsID = Integer.parseInt(request.getParameter("mrbsID"));
+		}
+		if (mrbsID == 0) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("location.href='mrbs.jsp'");
+			script.println("</script>");
+		}
 
-	Mrbs mrbs = new MrbsDAO().getMrbs(mrbsID);
+		Mrbs mrbs = new MrbsDAO().getMrbs(mrbsID);
 
-	if (!userID.equals(mrbs.getUserID())&&!userID.equals("admin")) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('권한이 없습니다.')");
-		script.println("location.href='mrbs.jsp'");
-		script.println("</script>");
-	}
+		if (!userID.equals(mrbs.getUserID()) && !userID.equals("admin")) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href='mrbs.jsp'");
+			script.println("</script>");
+		}
 	%>
 	<header class="header"> <a href="main.jsp"
-		style="text-decoration: none; color: #ff7846">No Food, No life!</a>
-	<br>
+		style="text-decoration: none; color: #ff7846">No Food, No life!</a> <br>
 	</header>
 	<nav align="center">
 	<ul class="nav">
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="mrbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mmrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -82,15 +81,16 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom:200px;" class="container" align="center">
+	<div style="padding-top: 350px; padding-bottom: 200px;"
+		class="container" align="center">
 		<div class="row">
-			<form method="post" action="mrbsUpdateAction.jsp?mrbsID=<%=mrbsID%>" enctype="multipart/form-data">
-				<table class="table"
-					style="text-align: center;">
+			<form method="post" action="mrbsUpdateAction.jsp?mrbsID=<%=mrbsID%>"
+				enctype="multipart/form-data">
+				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
 							<th height="50px" colspan="2"
-								style="background-color: #695d46; color: #ffffff; text-align: center; vertical-align:middle;">
+								style="background-color: #695d46; color: #ffffff; text-align: center; vertical-align: middle;">
 								게시판글쓰기 양식</th>
 						</tr>
 					</thead>
@@ -114,40 +114,51 @@ a, a:hover {
 								<p>제목</p>
 							</td>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="mrbsTitle" maxlength="50" value="<%=mrbs.getMrbsTitle()%>"/></td>
+								placeholder="글 제목" name="mrbsTitle" maxlength="50"
+								value="<%=mrbs.getMrbsTitle()%>" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>첨부할 동영상 링크</p>
 							</td>
-							<%if(mrbs.getMrbsVideoSrc() == null){ %>
+							<%
+								if (mrbs.getMrbsVideoSrc() == null) {
+							%>
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="mrbsVideoSrc" maxlength="200"/></td>
-							<% } else {%>
+								name="mrbsVideoSrc" maxlength="200" /></td>
+							<%
+								} else {
+							%>
 							<td><input type="url" class="form-control"
 								placeholder="https://www.youtube.com/watch?v=... 또는 https://youtu.be/..."
-								name="mrbsVideoSrc" maxlength="200"  value="https://youtu.be/<%=mrbs.getMrbsVideoSrc()%>"/></td>
-							<% }%>
+								name="mrbsVideoSrc" maxlength="200"
+								value="https://youtu.be/<%=mrbs.getMrbsVideoSrc()%>" /></td>
+							<%
+								}
+							%>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
-							<td><input type="file" class="form-control"
-								name="mrbsImage"/></td>
+							<td><input type="file" name="mrbsImage" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
 								<p>내용</p>
 							</td>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="mrbsContent" maxlength="20000" style="height: 500px;" ><%=mrbs.getMrbsContent()%></textarea></td>
+									name="mrbsContent" maxlength="20000" style="height: 500px;"><%=mrbs.getMrbsContent()%></textarea></td>
 						</tr>
-						<tr><td colspan="2"></td></tr>
+						<tr>
+							<td colspan="2"></td>
+						</tr>
 					</tbody>
-				</table> 
-				<input type="submit" style="background-color: #695d46; border: 2px solid #695d46" class="btn btn-primary" value="글수정">
+				</table>
+				<input type="submit"
+					style="background-color: #695d46; border: 2px solid #695d46"
+					class="btn btn-primary" value="글수정">
 			</form>
 		</div>
 	</div>

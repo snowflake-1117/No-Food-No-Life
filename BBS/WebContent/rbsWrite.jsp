@@ -51,9 +51,11 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 350px" class="container" align="center">
+	<div style="padding-top: 350px; padding-bottom: 350px"
+		class="container" align="center">
 		<div class="row">
-			<form method="post" action="rbsWriteAction.jsp" enctype="multipart/form-data">
+			<form method="post" action="rbsWriteAction.jsp"
+				enctype="multipart/form-data">
 				<table class="table" style="text-align: center;">
 					<thead>
 						<tr>
@@ -95,8 +97,7 @@ a, a:hover {
 							<td style="width: 30%;">
 								<p>첨부할 이미지 파일</p>
 							</td>
-							<td><input type="file" class="form-control"
-								name="rbsImage" /></td>
+							<td><input type="file" name="rbsImage" /></td>
 						</tr>
 						<tr>
 							<td style="width: 30%;">
