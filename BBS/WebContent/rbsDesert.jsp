@@ -60,7 +60,7 @@ a, a:hover {
 		<div>
 			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="active" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="bbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			<li><a class="before" href="notice.html">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -168,18 +168,6 @@ a, a:hover {
 					}
 				%>
 			</div>
-		</div>
-		<div>
-			<form name="searchForm" method="get" style="padding-top: 50px;">
-				<select name="searchOption">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-					<option value="category">카테고리</option>
-					<option value="username">글쓴이</option>
-				</select> <input name="searchInput" type="search" value=""
-					placeholder="검색할 내용을 입력" /> <input type="submit"
-					name="searchSubmit" value="검색" />
-			</form>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>

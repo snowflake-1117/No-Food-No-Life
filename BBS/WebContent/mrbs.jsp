@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=euc-kr"
 	pageEncoding="euc-kr"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
-<%@ page import="cmt.CmtDAO"%>
+<%@ page import="mrbs.MrbsDAO"%>
+<%@ page import="mrbs.Mrbs"%>
+<%@ page import="mrcmt.MrcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -63,15 +63,15 @@ a, a:hover {
 	</nav>
 	<nav>
 	<ul class="menu">
-		<li><a class="before" href="mrbs.jsp">My recipes</a></li>
+		<li><a class="active" href="mrbs.jsp">My recipes</a></li>
 		<li><a class="before" href="best.jsp">Best recipes</a></li>
-		<li><a class="active" href="bbs.jsp">Free board</a></li>
+		<li><a class="before" href="bbs.jsp">Free board</a></li>
 	</ul>
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="write.jsp" class="btn btn-success pull-right"
+			<a href="mrbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
 		</div>
 		<div class="row">
@@ -97,21 +97,22 @@ a, a:hover {
 				</thead>
 				<tbody>
 					<%
-						BbsDAO bbsDAO = new BbsDAO();
-						CmtDAO cmtDAO = new CmtDAO();
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+						MrbsDAO mrbsDAO = new MrbsDAO();
+						MrcmtDAO mrcmtDAO = new MrcmtDAO();
+						ArrayList<Mrbs> list = mrbsDAO.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
-						<td><%=list.get(i).getBbsCategory()%></td>
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
-						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getBbsID())%>]
+						<td><%=list.get(i).getMrbsID()%></td>
+						<td><%=list.get(i).getMrbsCategory()%></td>
+						<td><a
+							href="mrbsView.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=mrcmtDAO.countMrcmt(list.get(i).getMrbsID())%>]
 						</a></td>
 						<td><%=list.get(i).getUserID()%></td>
-						<td><%=list.get(i).getBbsDate().substring(0, 11)%></td>
-						<td><%=list.get(i).getBbsHit()%></td>
-						<td><%=list.get(i).getBbsLike()%></td>
+						<td><%=list.get(i).getMrbsDate().substring(0, 11)%></td>
+						<td><%=list.get(i).getMrbsHit()%></td>
+						<td><%=list.get(i).getMrbsLike()%></td>
 					</tr>
 					<%
 						}
@@ -122,30 +123,30 @@ a, a:hover {
 				<%
 					if (pageNumber != 1) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber - 1%>"
+				<a href="mrbs.jsp?pageNumber=<%=pageNumber - 1%>"
 					class="btn btn-success pull-left"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">이전</a>
 				<%
 					}
 
 					for (int i = pageNumber - 5; i < pageNumber + 5; i++) {
-						if (i > 0 && bbsDAO.nextPage(i)) {
+						if (i > 0 && mrbsDAO.nextPage(i)) {
 							if (i == pageNumber) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				<a href="mrbs.jsp?pageNumber=<%=i%>"><b>&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
 				</b></a>
 				<%
 					} else {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
+				<a href="mrbs.jsp?pageNumber=<%=i%>">&nbsp;&nbsp;<%=i%>&nbsp;&nbsp;
 				</a>
 				<%
 					}
 						}
 					}
-					if (bbsDAO.nextPage(pageNumber + 1)) {
+					if (mrbsDAO.nextPage(pageNumber + 1)) {
 				%>
-				<a href="bbs.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="mrbs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success pull-right"
 					style="background-color: #ff7846; border: 1px solid #ff7846;">다음</a>
 				<%
@@ -154,12 +155,12 @@ a, a:hover {
 			</div>
 		</div>
 		<div>
-			<form name="searchForm" method="post" action="search.jsp" style="padding-top: 50px;">
+			<form name="searchForm" method="post" action="mrbsSearch.jsp" style="padding-top: 50px;">
 				<select name="searchOption"> 
-					<option value="bbsTitle">제목</option>
-					<option value="bbsContent">내용</option>
+					<option value="mrbsTitle">제목</option>
+					<option value="mrbsContent">내용</option>
 					<option value="userId">글쓴이</option>
-					<option value="bbsCategory">카테고리</option>
+					<option value="mrbsCategory">카테고리</option>
 				</select> 
 				<input name="searchInput" type="text" value="" placeholder="검색할 내용을 입력" /> 
 				<input type="submit" name="searchSubmit" value="검색" />
