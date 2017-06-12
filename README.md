@@ -3,11 +3,16 @@ No Food No Life
 <br><br>
 ### 17.06.12 update
 
-1. MRBS, MRCMT 데이터베이스 구축
+1. MRBS(my recipes board system), MRCMT(my recipe comment) 데이터베이스 구축
 > <img src="MRBS.png"><br>
 > <img src="MRCMT.png"><br>
 2. 나의 레시피 게시판 구현
 3. 나의 레시피 게시판의 게시글중 추천수가 10 이상인 게시물은 베스트 레시피 게시판에 노출
+4. 검색기능 MRBS 데이터에 모두 적용
+5. NBS(notice board system) 데이터베이스 구축
+> <img src="NBS.png"><br>
+6. 공지게시판 구현
+7. 사용자별 세션 권한 적용
 
 <br><br>
 ### 17.06.11 update
