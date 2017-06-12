@@ -56,9 +56,9 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="introduction.jsp">Introduction</a></li>
+			<li><a href="rbs.jsp">Recipe</a></li>
+			<li><a href="mrbs.jsp">Community</a></li>
 			<li><a href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -85,7 +85,7 @@ a, a:hover {
 			<div>
 				<a href="nbs.jsp"
 					style="background-color: #695d46; border: 2px solid #695d46"
-					class="btn btn-success pull-right">목록</a>
+					class="btn btn-success pull-right">목록</a><br>
 			</div>
 			<%
 				if (userID != null && userID.equals(nbs.getUserID())) {
@@ -103,11 +103,11 @@ a, a:hover {
 		</div>
 		<div class="row">
 			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
+				style="text-align: center;">
 				<thead>
 					<tr>
 						<th colspan="2"
-							style="background-color: #695d46; color: #ffffff; text-align: center;">게시판
+							style="background-color: #695d46; color: #ffffff; text-align: center; border-radius: 15px 15px 0 0;">게시판
 							글 보기</th>
 					</tr>
 				</thead>

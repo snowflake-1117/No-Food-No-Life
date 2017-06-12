@@ -39,10 +39,10 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
+			<li><a href="introduction.jsp">Introduction</a></li>
+			<li><a href="rbs.jsp">Recipe</a></li>
+			<li><a class="active" href="mrbs.jsp">Community</a></li>
+			<li><a href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
 	<%
@@ -72,15 +72,14 @@ a, a:hover {
 		style="padding-top: 350px; padding-bottom: 100px;">
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="write.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
+				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<div class="row">
-			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
+			<table class="table table-striped" style="text-align: center;">
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">번호</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 15px 0 0 0;">번호</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">카테고리</th>
 						<th
@@ -92,7 +91,7 @@ a, a:hover {
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">추천수</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 0 15px 0 0;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -154,15 +153,16 @@ a, a:hover {
 			</div>
 		</div>
 		<div>
-			<form name="searchForm" method="post" action="search.jsp" style="padding-top: 50px;">
-				<select name="searchOption"> 
+			<form name="searchForm" method="post" action="search.jsp"
+				style="padding-top: 50px;">
+				<select name="searchOption">
 					<option value="bbsTitle">제목</option>
 					<option value="bbsContent">내용</option>
 					<option value="userId">글쓴이</option>
 					<option value="bbsCategory">카테고리</option>
-				</select> 
-				<input name="searchInput" type="text" value="" placeholder="검색할 내용을 입력" /> 
-				<input type="submit" name="searchSubmit" value="검색" />
+				</select> <input name="searchInput" type="text" value=""
+					placeholder="검색할 내용을 입력" /> <input type="submit"
+					name="searchSubmit" value="검색" />
 			</form>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

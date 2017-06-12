@@ -2,8 +2,8 @@
 
 div.search {
 	padding-top: 20px;
-  	width: 100%;
-  	height: inherit;
+  width: 100%;
+  height: inherit;
 }
 
 
@@ -109,7 +109,8 @@ thead tr {
   height: 50px;
   border-radius: 4px;
   padding: 50px 0px 5px 0px;
-  background-color: #ff7846;
+  background-color: #ffffff;
+  border: #ff7846;
   color: white;
   text-align: center;
 	vertical-align: middle;
@@ -124,6 +125,7 @@ tbody tr {
 	border-bottom: 1px solid #695d46;
   text-align: center;
 }
+
 
 /*design section QnA list*/
 
@@ -141,8 +143,9 @@ section {
 
 details[open] summary {
   border-radius: 4px;
-  background: #ff7846;
-  color: white;
+  background: white;
+  border:1px solid #ff7846;
+  color: #ff7846;
 }
 
 

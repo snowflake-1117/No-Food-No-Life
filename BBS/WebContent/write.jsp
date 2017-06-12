@@ -29,9 +29,9 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="introduction.jsp">Introduction</a></li>
+			<li><a class="before" href="rbs.jsp">Recipe</a></li>
+			<li><a class="active" href="mrbs.jsp">Community</a></li>
 			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -58,7 +58,7 @@ a, a:hover {
 					<thead>
 						<tr>
 							<th height="50px" colspan="2"
-								style="background-color: #695d46; color: #ffffff; text-align: center; vertical-align: middle;">
+								style="background-color: #695d46; color: #ffffff; text-align: center; vertical-align: middle; border-radius: 15px 15px 0 0;">
 								게시판글쓰기 양식</th>
 						</tr>
 					</thead>

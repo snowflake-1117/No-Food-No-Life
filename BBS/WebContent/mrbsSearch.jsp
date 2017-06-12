@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta content="width=device-width" name="viewport" initial-scale="1">
+<meta content="width=device-width" name="mrbsViewport" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/community.css">
@@ -39,9 +39,9 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="introduction.jsp">Introduction</a></li>
+			<li><a class="before" href="rbs.jsp">Recipe</a></li>
+			<li><a class="active" href="mrbs.jsp">Community</a></li>
 			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -75,18 +75,17 @@ a, a:hover {
 		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="write.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
+				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<%
 			}
 		%>
 		<div class="row">
-			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
+			<table class="table table-striped" style="text-align: center;">
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">번호</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 15px 0 0 0;">번호</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">카테고리</th>
 						<th
@@ -98,7 +97,7 @@ a, a:hover {
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">추천수</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 0 15px 0 0;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -114,7 +113,7 @@ a, a:hover {
 					<tr>
 						<td><%=list.get(i).getMrbsID()%></td>
 						<td><%=list.get(i).getMrbsCategory()%></td>
-						<td><a href="view.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						<td><a href="mrbsView.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getMrbsID())%>]
 						</a></td>
 						<td><%=list.get(i).getUserID()%></td>

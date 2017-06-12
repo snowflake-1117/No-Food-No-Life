@@ -41,6 +41,17 @@ public class UserDAO {
 		return -1;
 	}
 	
+	public int deleteID(String userID) {
+		String SQL = "DELETE FROM USER WHERE userID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;// 디비 오류
+	}
 	
 	public User getUser(String userID){
 		String SQL = "SELECT * FROM USER WHERE userID = ?";

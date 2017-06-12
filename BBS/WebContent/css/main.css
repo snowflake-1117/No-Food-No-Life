@@ -1,5 +1,5 @@
 @import url('http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css');
-
+@import url(http://fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
 
 html,body {
   margin:0; padding:0; height:100%;
@@ -24,9 +24,11 @@ body {
 
 .header {
 	position: absolute;
-   width:100%;
+   width:900px;
  font-family: 'Nanum Brush Script'; font-weight: bold; color: #ff7846; font-size: 110px;
-  margin: 50px auto 0%;
+  margin-top: 50px;
+  margin-left:-450px;
+  left:50%;
    text-align:center;
 }
 nav{
@@ -34,8 +36,10 @@ nav{
 }
 
 .nav {
-  margin: 200px auto 0%;
-  width:100%; 
+  margin-top: 200px;
+  margin-left:-500px;
+  left:50%;
+  width:1000px; 
   position: absolute;
   font-size: 30px;
   padding-bottom: -2px;
@@ -113,7 +117,7 @@ div div a:hover {
 	  height:500px;
     } 
 .section {
-	background:pink;
+
   width:800px; height:500px;
   position:absolute;
   margin-top:250px;
@@ -122,6 +126,46 @@ div div a:hover {
   left:50%;
   margin-left:-400px;
 }
+
+td p{
+	padding-top:10px;
+	
+}
+.file_input label {
+	margin-top:5px;
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:100px;
+    height:30px;
+    background:#695d46;
+    border-radius:3px;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    align:left;
+    display:inline-block;
+    width:75%;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
+
+
 .carou{
 	
 	width:1200px; height:600px;
@@ -130,7 +174,7 @@ div div a:hover {
 	left:50%;
   	margin-left:-600px;
 	text-align:center;
-	verticarl-align:middle;
+	verticar-align:middle;
 	
 }
 

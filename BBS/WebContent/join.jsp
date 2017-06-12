@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width" name="viewport" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>게시판</title>
+<link rel="stylesheet" href="css/main.css">	
+<title>회원가입</title>
+
 
 <script>
 function idCheck(){//아이디길이 4~12자 제한 체크, 영문+숫자인지 체크
@@ -24,7 +26,7 @@ function passCheck(){ //비밀번호, 비밀번호 확인 같은지 체크
 	 var pass= document.addform.userPassword.value;
 	 var str = /^[A-Za-z0-9_-]{6,16}$/;//비밀번호를 영문대소문자,숫자,(_)로만 구성하도록 검사할 정규표현식
 	 if(!str.test(pass)){//비밀번호(pass)가 str의 범주에 해당할 경우(영문대소문자나 숫자,(_)가 아닐 경우)+글자수 만족 안 할 때 조건문이 참이된다.
-		 alert("비밀번호를 6~16글자의 영문대소문자+숫자,(_)로  입력해주세요.");
+		 alert("비밀번호를 6~16글자의 영문 대소문자나 숫자,(_)로  입력해주세요.");
 		 document.addform.userPassword.focus();
 		 return false;
 	 }
@@ -71,38 +73,12 @@ function memReg(){//가입하기 전 id길이와 비밀번호 체크
 </script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
-				<li><a href="bbs.jsp">게시판</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">접속하기<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li class="active"><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">회원가입</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
+	<nav>
+		<header class="header" style="font-size:60px; margin-top:100px;"><a href="main.jsp" style="text-decoration: none; color:#ff7846">No Food, No life!</a></header>
+		
 		<div class="container">
-			<div class="col-lg-4"></div>
-			<div class="col-lg-4">
-				<div class="jumbotron" style="padding-top: 20px;">
+			<div style="margin-top:200px; width:380px; position:absolute; left:50%; margin-left:-190px; margin-bottom:100px;">
+				<div class="jumbotron" style="height:400px; padding-top:20px; padding-bottom:10px;">
 					<form method="post" action="joinAction.jsp" name="addform">
 						<h3 style="text-align:center;">회원가입 화면</h3>
 						<div class="form-group">
@@ -120,11 +96,14 @@ function memReg(){//가입하기 전 id길이와 비밀번호 체크
 						<div class="form-group">
 							<input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="50">
 						</div>
-						<input type="button" onclick="memReg()" class="btn btn-primary form-control" value="회원가입">
+						<br><input type="button" onclick="memReg()" style="width:250px;background-color:orange; border-color:orange; "class="btn btn-primary form-control" value="가입하기">
 					</form>
 				</div>
+				<hr>
+				<a href="login.jsp">로그인</a>
+				</div>
 			</div>
-		</div>
+		
 	</nav>
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

@@ -39,10 +39,11 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a class="before" href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="before" href="rbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a class="active" href="mrbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a class="before" href="introduction.jsp">Introduction</a></li>
+			<li><a class="before" href="rbs.jsp">Recipe</a></li>
+			<li><a class="active" href="mrbs.jsp">Community</a></li>
 			<li><a class="before" href="nbs.jsp">Notice&amp;QnA</a></li>
+			</div>
 	</ul>
 	</nav>
 	<%
@@ -75,18 +76,17 @@ a, a:hover {
 		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="mrbsWrite.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
+				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<%
 			}
 		%>
 		<div class="row">
-			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
+			<table class="table table-striped" style="text-align: center;">
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">번호</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 15px 0 0 0;">번호</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">카테고리</th>
 						<th
@@ -98,7 +98,7 @@ a, a:hover {
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">추천수</th>
+							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 0 15px 0 0;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -39,9 +39,9 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a href="introduce.html">Introduction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="mrbs.jsp">Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-			<li><a href="rbs.jsp">Community&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="introduction.jsp">Introduction</a></li>
+			<li><a href="mrbs.jsp">Recipe</a></li>
+			<li><a class="active" href="rbs.jsp">Community</a></li>
 			<li><a href="nbs.jsp">Notice&amp;QnA</a></li>
 	</ul>
 	</nav>
@@ -86,7 +86,7 @@ a, a:hover {
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">번호</th>
+							style="background-color: #695d46; width: 10%; text-align: center;border-radius: 15px 0 0 0;">번호</th>
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">카테고리</th>
 						<th
@@ -98,7 +98,7 @@ a, a:hover {
 						<th
 							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">추천수</th>
+							style="background-color: #695d46; width: 10%; text-align: center;border-radius: 0 15px 0 0;">추천수</th>
 					</tr>
 				</thead>
 				<tbody>
