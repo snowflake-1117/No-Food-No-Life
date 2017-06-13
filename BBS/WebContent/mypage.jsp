@@ -23,9 +23,8 @@
 </head>
 <body>
 	<nav> <header class="header"
-		style="font-size:60px; margin-top:100px;">
-	<a href="main.jsp" style="text-decoration: none; color: #ff7846">No
-		Food, No life!</a></header>
+		style="font-size:60px; margin-top:100px;"> <a href="main.jsp"
+		style="text-decoration: none; color: #ff7846">No Food, No life!</a></header>
 	<div class="container">
 
 		<div
@@ -33,7 +32,8 @@
 			<div class="jumbotron"
 				style="padding-top: 15px; padding-bottom: 35px;">
 				<form method="post" action="mypageAction.jsp">
-					<h3 style="text-align: center;">비밀번호 및 이메일 변경</h3><br>
+					<h3 style="text-align: center;">비밀번호 및 이메일 변경</h3>
+					<br>
 					<div class="form-group">
 						<input type="password" class="form-control"
 							placeholder="변경할 비밀번호(6~16자)" name="newPassword" maxlength="20">
@@ -45,14 +45,24 @@
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="이메일"
 							value="<%=user.getUserEmail()%>" name="userEmail" maxlength="50">
-					</div><br>
-					<input type="submit" class="btn btn-primary form-control" style="border: 1px solid orange; background-color:orange;"
+					</div>
+					<br> <input type="submit" class="btn btn-primary form-control"
+						style="border: 1px solid orange; background-color: orange;"
 						value="수정하기">
 				</form>
 			</div>
 			<hr>
-				<a onclick="return confirm('정말로 탈퇴하시겠습니까?')" href="mypageDeleteAction.jsp">탈퇴하기</a></nav>
-		</div>
+			<%
+				if (!userID.equals("admin")) {
+			%>
+			<a onclick="return confirm('정말로 탈퇴하시겠습니까?')"
+				href="mypageDeleteAction.jsp">탈퇴하기</a>
+			<%
+				}
+			%>
+		
+	</nav>
+	</div>
 	</div>
 	</nav>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

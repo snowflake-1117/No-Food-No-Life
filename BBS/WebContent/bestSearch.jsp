@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta content="width=device-width" name="viewport" initial-scale="1">
+<meta content="width=device-width" name="mrbsViewport" initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/community.css">
@@ -80,10 +80,6 @@ a, a:hover {
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
-		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="write.jsp" class="btn btn-success pull-right"
-				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">±Û¾²±â</a>
-		</div>
 		<div class="row">
 			<table class="table table-striped" style="text-align: center;">
 				<thead>
@@ -117,7 +113,7 @@ a, a:hover {
 					<tr>
 						<td><%=list.get(i).getMrbsID()%></td>
 						<td><%=list.get(i).getMrbsCategory()%></td>
-						<td><a href="view.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						<td><a href="mrbsView.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=cmtDAO.countCmt(list.get(i).getMrbsID())%>]
 						</a></td>
 						<td><%=list.get(i).getUserID()%></td>
