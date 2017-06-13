@@ -101,25 +101,25 @@ a, a:hover {
 		style="padding-top: 350px; padding-bottom: 100px;">
 		<div class="row">
 			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
+				style="text-align: center;">
 				<thead>
 					<tr>
 						<th
-							style="background-color: #695d46; width: 20%; text-align: center;">아이디</th>
+							style="background-color: #695d46; width: 20%; text-align: center; border-radius: 15px 0 0 0;">아이디</th>
 						<th
 							style="background-color: #695d46; width: 20%; text-align: center;">비밀번호</th>
 						<th
 							style="background-color: #695d46; width: 20%; text-align: center;">이름</th>
 						<th
 							style="background-color: #695d46; width: 20%; text-align: center;">이메일</th>
+							<th
+							style="background-color: #695d46; width: 10%; text-align: center;">수정</th>
 						<th
-							style="background-color: #695d46; width: 20%; text-align: center;">삭제</th>
+							style="background-color: #695d46; width: 10%; text-align: center;  border-radius: 0 15px 0 0;">삭제</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-						//UserDAO userDAO = new UserDAO();
-						//ArrayList<User> list = userDAO.getList();
 						for (int i = (pageNumber - 1) * 10; i < pageNumber * 10 && i < totalCount; i++) {
 							if (!list.get(i).getUserID().equals("admin")) {
 					%>
@@ -128,6 +128,10 @@ a, a:hover {
 						<td><%=list.get(i).getUserPassword()%></td>
 						<td><%=list.get(i).getUserName()%></td>
 						<td><%=list.get(i).getUserEmail()%></td>
+						<td><a
+							onclick="return confirm('<%=list.get(i).getUserID()%> 유저정보 수정페이지로 이동합니다')"
+							href="memberUpdate.jsp?userID=<%=list.get(i).getUserID()%>"
+							name="userID">수정</a></td>
 						<td><a
 							onclick="return confirm('<%=list.get(i).getUserID()%> 유저를 정말로 삭제하시겠습니까?')"
 							href="memberDeleteAction.jsp?userID=<%=list.get(i).getUserID()%>"

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="user.User"%>
 <%@ page import="user.UserDAO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,8 +12,16 @@
 		userID = (String) session.getAttribute("userID");
 	}
 
+	if (!userID.equals("admin")) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('관리자가 아닙니다.')");
+		script.println("location.href='login.jsp'");
+		script.println("</script>");
+	}
+	
 	UserDAO userDAO = new UserDAO();
-	User user = userDAO.getUser(userID);
+	User user = userDAO.getUser(request.getParameter("userID"));
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width" name="viewport" initial-scale="1">
@@ -31,10 +40,10 @@
 			style="margin-top: 200px; width: 450px; position: absolute; left: 50%; margin-left: -190px; margin-bottom: 100px;">
 			<div class="jumbotron"
 				style="padding-top: 15px; padding-bottom: 35px;">
-				<form method="post" action="mypageAction.jsp">
+				<form method="post" action="memberUpdateAction.jsp">
 					<h3 style="text-align: center;">비밀번호 및 이메일 변경</h3>
 					<br>
-					<table style="text-align:left; width: 350px;">
+					<table style="text-align: left; width: 350px;">
 						<tr class="form-group">
 							<td>아이디</td>
 							<td><input type="text" class="form-control" name="userID"
@@ -44,6 +53,11 @@
 							<td>이름</td>
 							<td><input type="text" class="form-control" name="userName"
 								maxlength="20" value="<%=user.getUserName()%>" readonly></td>
+						</tr>
+						<tr class="form-group">
+							<td>현재 비밀번호</td>
+							<td><input type="text" class="form-control"
+								name="userPassword" maxlength="20" value="<%=user.getUserPassword()%>" readonly></td>
 						</tr>
 						<tr class="form-group">
 							<td>비밀번호</td>
