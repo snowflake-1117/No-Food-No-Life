@@ -32,25 +32,41 @@
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		} else {
-			if (request.getParameter("newPassword") == null || request.getParameter("newPassword").equals("")
-					|| request.getParameter("userEmail") == null || request.getParameter("userEmail").equals("")) {
+			if ((request.getParameter("newPassword") == null || request.getParameter("newPassword").equals(""))
+					&& (request.getParameter("userEmail") == null
+							|| request.getParameter("userEmail").equals(""))) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('입력되지 않은 사항이 있습니다. ')");
+				script.println("alert('이메일이나 비밀번호 중 최소 한 가지는 수정해야 합니다. ')");
 				script.println("history.back()");
 				script.println("</script>");
-			} 
-			else if (!request.getParameter("newPassword").equals(request.getParameter("newPassword_Re"))||(request.getParameter("newPassword").length()<6)) {
+			} else if ((request.getParameter("newPassword") != null
+					&& !request.getParameter("newPassword").equals(""))
+					&& (!request.getParameter("newPassword").equals(request.getParameter("newPassword_Re"))
+							|| request.getParameter("newPassword").length() < 6)) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('비밀번호를 다시 확인해주세요.')");
 				script.println("history.back()");
 				script.println("</script>");
-			} 
-			else {
+			} else {
 				UserDAO userDAO = new UserDAO();
 
-				int result = userDAO.update(request.getParameter("newPassword"), request.getParameter("userEmail"), userID);
+				int result;
+
+				if (request.getParameter("newPassword") != null && !request.getParameter("newPassword").equals("")
+						&& request.getParameter("userEmail") != null
+						&& !request.getParameter("userEmail").equals("")) {
+					result = userDAO.update(request.getParameter("newPassword"), request.getParameter("userEmail"),
+							userID);
+				} else if (request.getParameter("newPassword") == null
+						|| request.getParameter("newPassword").equals("")) {
+					result = userDAO.userEmailUpdate(request.getParameter("userEmail"), userID);
+				} else if (request.getParameter("userEmail") == null
+						|| request.getParameter("userEmail").equals("")) {
+					result = userDAO.userPasswordUpdate(request.getParameter("newPassword"), userID);
+				}
+				else result = -1;
 
 				if (result == -1) {
 					PrintWriter script = response.getWriter();

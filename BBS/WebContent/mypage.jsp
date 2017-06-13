@@ -35,7 +35,7 @@
 				<form method="post" action="mypageAction.jsp">
 					<h3 style="text-align: center;">비밀번호 및 이메일 변경</h3><br>
 					<div class="form-group">
-						<input type="password" class="form-control" value="<%%>"
+						<input type="password" class="form-control"
 							placeholder="변경할 비밀번호(6~16자)" name="newPassword" maxlength="20">
 					</div>
 					<div class="form-group">
