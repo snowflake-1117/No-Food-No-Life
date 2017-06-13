@@ -69,6 +69,7 @@ a, a:hover {
 		if (userID == null) {
 	%>
 	<div align="right" class="login">
+	<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
 		<a href="login.jsp">로그인</a> | <a href="join.jsp">회원가입&nbsp;&nbsp;&nbsp;</a>
 	</div>
 	<%

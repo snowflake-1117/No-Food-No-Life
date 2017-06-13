@@ -30,7 +30,7 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a href="introduce.jsp">Introduction</a></li>
+			<li><a href="introduction.jsp">Introduction</a></li>
 			<li><a href="rbs.jsp">Recipe</a></li>
 			<li><a href="mrbs.jsp">Community</a></li>
 			<li><a href="nbs.jsp">Notice&amp;QnA</a></li>
