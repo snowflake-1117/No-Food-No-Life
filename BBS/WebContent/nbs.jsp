@@ -86,7 +86,7 @@ a, a:hover {
 		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="nbsWrite.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
+				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<%
 			}
@@ -112,16 +112,16 @@ a, a:hover {
 					<%
 						NbsDAO nbsDAO = new NbsDAO();
 						RcmtDAO rcmtDAO = new RcmtDAO();
-						ArrayList<Nbs> list = nbsDAO.getList(pageNumber);
-						for (int i = 0; i < list.size(); i++) {
+						ArrayList<Nbs> nbsList = nbsDAO.getList(pageNumber);
+						for (int i = 0; i < nbsList.size(); i++) {
 					%>
 					<tr>
-						<td><%=list.get(i).getNbsID()%></td>
-						<td><a href="nbsView.jsp?nbsID=<%=list.get(i).getNbsID()%>"><%=list.get(i).getNbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						<td><%=nbsList.get(i).getNbsID()%></td>
+						<td><a href="nbsView.jsp?nbsID=<%=nbsList.get(i).getNbsID()%>"><%=nbsList.get(i).getNbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></a></td>
-						<td><%=list.get(i).getUserID()%></td>
-						<td><%=list.get(i).getNbsDate().substring(0, 11)%></td>
-						<td><%=list.get(i).getNbsHit()%></td>
+						<td><%=nbsList.get(i).getUserID()%></td>
+						<td><%=nbsList.get(i).getNbsDate().substring(0, 11)%></td>
+						<td><%=nbsList.get(i).getNbsHit()%></td>
 					</tr>
 					<%
 						}

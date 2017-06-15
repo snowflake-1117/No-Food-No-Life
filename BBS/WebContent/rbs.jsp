@@ -85,11 +85,11 @@ a, a:hover {
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
 		<%
-			if (userID != null&&userID.equals("admin")) {
+			if (userID != null && userID.equals("admin")) {
 		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="rbsWrite.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
+			<a href="nbsWrite.jsp" class="btn btn-success pull-right"
+				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<%
 			}

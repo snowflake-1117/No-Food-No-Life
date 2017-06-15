@@ -28,7 +28,7 @@
 	<div class="container">
 
 		<div
-			style="margin-top: 200px; width: 450px; position: absolute; left: 50%; margin-left: -190px; margin-bottom: 100px;">
+			style="margin-top: 200px; width: 450px; position: absolute; left: 46.5%; margin-left: -190px; margin-bottom: 100px;">
 			<div class="jumbotron"
 				style="padding-top: 15px; padding-bottom: 35px;">
 				<form method="post" action="mypageAction.jsp">

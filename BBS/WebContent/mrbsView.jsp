@@ -102,7 +102,7 @@ a, a:hover {
 		<div style="padding-bottom: 30px;">
 			<div>
 				<a href="mrbs.jsp"
-					style="background-color: #695d46; border: 2px solid #695d46"
+					style="background-color: #695d46; border: 1px solid #695d46"
 					class="btn btn-success pull-right">목록</a>
 			</div>
 			<%

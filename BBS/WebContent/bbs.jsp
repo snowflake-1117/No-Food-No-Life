@@ -81,10 +81,16 @@ a, a:hover {
 	</nav>
 	<div class="container" align="center"
 		style="padding-top: 350px; padding-bottom: 100px;">
+		<%
+			if (userID != null) {
+		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="write.jsp" class="btn btn-success pull-right"
+			<a href="mrbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">±Û¾²±â</a>
 		</div>
+		<%
+			}
+		%>
 		<div class="row">
 			<table class="table table-striped" style="text-align: center;">
 				<thead>
