@@ -90,13 +90,19 @@ a, a:hover {
 	%>
 	</nav>
 
+	<nav>
+	<ul class="menu">
+		<li><a class="active" href="nbs.jsp">Notice</a></li>
+		<li><a class="before" href="qna.jsp">Q&A</a></li>
+	</ul>
+	</nav>
 	<div class="container"
-		style="padding-top: 350px; padding-bottom: 200px;">
+		style="padding-top: 250px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
 				<a href="nbs.jsp"
 					style="background-color: #695d46; border: 2px solid #695d46"
-					class="btn btn-success pull-right">목록</a><br>
+					class="btn btn-success pull-right">목록</a>
 			</div>
 			<%
 				if (userID != null && userID.equals(nbs.getUserID())) {

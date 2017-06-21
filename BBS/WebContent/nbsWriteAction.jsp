@@ -53,8 +53,8 @@
 				if (imgFile != null)
 					imgName = imgFile.getName();
 
-				result = nbsDAO.write(multi.getParameter("nbsTitle"), userID, multi.getParameter("nbsContent"),
-						imgName);
+				result = nbsDAO.write(multi.getParameter("nbsTitle"), userID,
+						multi.getParameter("nbsContent"), imgName);
 
 				if (result == -1) {
 					PrintWriter script = response.getWriter();

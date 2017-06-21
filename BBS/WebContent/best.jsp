@@ -100,7 +100,7 @@ a, a:hover {
 	</ul>
 	</nav>
 	<div class="container" align="center"
-		style="padding-top: 350px; padding-bottom: 100px;">
+		style=" padding-top: 250px; padding-bottom: 100px;">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center;">
 				<thead>
@@ -116,9 +116,8 @@ a, a:hover {
 						<th
 							style="background-color: #695d46; width: 20%; text-align: center;">작성일</th>
 						<th
-							style="background-color: #695d46; width: 10%; text-align: center;">조회수</th>
-						<th
-							style="background-color: #695d46; width: 10%; text-align: center; border-radius: 0 15px 0 0;">추천수</th>
+							style="background-color: #695d46; width: 10%; text-align: center;border-radius: 0 15px 0 0;">조회수</th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -130,13 +129,12 @@ a, a:hover {
 					<tr>
 						<td><%=list.get(i).getMrbsID()%></td>
 						<td><%=list.get(i).getMrbsCategory()%></td>
-						<td><a href="rbsView.jsp?rbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						<td><a href="mrbsView.jsp?mrbsID=<%=list.get(i).getMrbsID()%>"><%=list.get(i).getMrbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%> [<%=mrcmtDAO.countMrcmt(list.get(i).getMrbsID())%>]
 						</a></td>
 						<td><%=list.get(i).getUserID()%></td>
 						<td><%=list.get(i).getMrbsDate().substring(0, 11)%></td>
 						<td><%=list.get(i).getMrbsHit()%></td>
-						<td><%=list.get(i).getMrbsLike()%></td>
 					</tr>
 					<%
 						}

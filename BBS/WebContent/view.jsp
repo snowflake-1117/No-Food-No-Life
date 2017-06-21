@@ -97,8 +97,15 @@ a, a:hover {
 	%>
 	</nav>
 
+	<nav>
+	<ul class="menu">
+		<li><a class="before" href="mrbs.jsp">My recipes</a></li>
+		<li><a class="before" href="best.jsp">Best recipes</a></li>
+		<li><a class="active" href="bbs.jsp">Free board</a></li>
+	</ul>
+	</nav>
 	<div class="container"
-		style="padding-top: 350px; padding-bottom: 200px;">
+		style="padding-top: 250px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
 				<a href="bbs.jsp"

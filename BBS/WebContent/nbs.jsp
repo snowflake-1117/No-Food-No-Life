@@ -3,7 +3,6 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="nbs.NbsDAO"%>
 <%@ page import="nbs.Nbs"%>
-<%@ page import="rcmt.RcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -80,7 +79,7 @@ a, a:hover {
 	</ul>
 	</nav>
 	<div class="container" align="center"
-		style="padding-top: 350px; padding-bottom: 100px;">
+		style="padding-top: 250px; padding-bottom: 100px;">
 		<%
 			if (userID != null && userID.equals("admin")) {
 		%>
@@ -111,17 +110,16 @@ a, a:hover {
 				<tbody>
 					<%
 						NbsDAO nbsDAO = new NbsDAO();
-						RcmtDAO rcmtDAO = new RcmtDAO();
-						ArrayList<Nbs> nbsList = nbsDAO.getList(pageNumber);
-						for (int i = 0; i < nbsList.size(); i++) {
+						ArrayList<Nbs> list = nbsDAO.getList(pageNumber);
+						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
-						<td><%=nbsList.get(i).getNbsID()%></td>
-						<td><a href="nbsView.jsp?nbsID=<%=nbsList.get(i).getNbsID()%>"><%=nbsList.get(i).getNbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
+						<td><%=list.get(i).getNbsID()%></td>
+						<td><a href="nbsView.jsp?nbsID=<%=list.get(i).getNbsID()%>"><%=list.get(i).getNbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br/>")%></a></td>
-						<td><%=nbsList.get(i).getUserID()%></td>
-						<td><%=nbsList.get(i).getNbsDate().substring(0, 11)%></td>
-						<td><%=nbsList.get(i).getNbsHit()%></td>
+						<td><%=list.get(i).getUserID()%></td>
+						<td><%=list.get(i).getNbsDate().substring(0, 11)%></td>
+						<td><%=list.get(i).getNbsHit()%></td>
 					</tr>
 					<%
 						}

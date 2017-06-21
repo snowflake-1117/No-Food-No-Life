@@ -62,7 +62,7 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 350px;" class="container" align="center">
+	<div style="padding-top: 250px; padding-bottom: 350px;" class="container" align="center">
 		<div class="row">
 			<form method="post" action="writeAction.jsp" enctype="multipart/form-data">
 				<table class="table" style="text-align: center;">

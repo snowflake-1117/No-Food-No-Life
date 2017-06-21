@@ -110,11 +110,23 @@ div div a:hover {
   color: #ff7846;
 }
 
+.carou{
+	
+	width:1200px; height:600px;
+	position:absolute;
+	margin-top:230px;
+	left:50%;
+  	margin-left:-600px;
+	text-align:center;
+	verticar-align:middle;
+	
+}
  .carousel-inner > .item > img {
       top: 0;
       left: 0;
-	  width:800px;
+      width:800px;
 	  height:500px;
+	  
     } 
 .section {
 
@@ -166,17 +178,6 @@ td p{
 }
 
 
-.carou{
-	
-	width:1200px; height:600px;
-	position:absolute;
-	margin-top:230px;
-	left:50%;
-  	margin-left:-600px;
-	text-align:center;
-	verticar-align:middle;
-	
-}
 
 .footer {
   width:100%; clear: both;

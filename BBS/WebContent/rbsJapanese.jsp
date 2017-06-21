@@ -99,16 +99,16 @@ a, a:hover {
 		<li><a class="before" href="rbsChinese.jsp">Chinese</a></li>
 		<li><a class="active" href="rbsJapanese.jsp">Japanese</a></li>
 		<li><a class="before" href="rbsWestern.jsp">Western</a></li>
-		<li><a class="before" href="rbsJapanese.jsp">Desert</a></li>
+		<li><a class="before" href="rbsDesert.jsp">Desert</a></li>
 	</ul>
 	</nav>
 	<div class="container" align="center"
-		style="padding-top: 350px; padding-bottom: 100px;">
+		style="padding-top: 250px; padding-bottom: 100px;">
 		<%
 			if (userID != null && userID.equals("admin")) {
 		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
-			<a href="nbsWrite.jsp" class="btn btn-success pull-right"
+			<a href="rbsWrite.jsp" class="btn btn-success pull-right"
 				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<%

@@ -97,13 +97,20 @@ a, a:hover {
 	%>
 	</nav>
 
+	<nav>
+	<ul class="menu">
+		<li><a class="active" href="mrbs.jsp">My recipes</a></li>
+		<li><a class="before" href="best.jsp">Best recipes</a></li>
+		<li><a class="before" href="bbs.jsp">Free board</a></li>
+	</ul>
+	</nav>
 	<div class="container"
-		style="padding-top: 350px; padding-bottom: 200px;">
+		style="padding-top: 250px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
 				<a href="mrbs.jsp"
-					style="background-color: #695d46; border: 1px solid #695d46"
-					class="btn btn-success pull-right">목록</a>
+					style="background-color: #695d46; border: 2px solid #695d46"
+					class="btn btn-success pull-right">목록</a><br>
 			</div>
 			<%
 				if (userID != null && (userID.equals(mrbs.getUserID())||userID.equals("admin"))) {

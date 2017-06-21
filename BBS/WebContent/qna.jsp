@@ -92,7 +92,7 @@ color:#111111;
 	<div align="center"
 		style="padding-bottom: 100px;">
 
-    <section class="section" style="margin-top:250px; margin-bottom:250px;" name="QnAList">
+    <section class="section" style="margin-top:250px; padding-top:40px; margin-bottom:250px;" name="QnAList">
     	<h1
 			style="font-family: 'Nanum Brush Script'; font-size: 60px; font-weight: bold">자주 묻는 질문</h1>
     

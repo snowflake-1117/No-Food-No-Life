@@ -92,7 +92,7 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 200px;"
+	<div style="padding-top: 250px; padding-bottom: 200px;"
 		class="container" align="center">
 		<div class="row">
 			<form method="post" action="rbsUpdateAction.jsp?rbsID=<%=rbsID%>"

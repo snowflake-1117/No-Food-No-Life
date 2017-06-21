@@ -12,9 +12,9 @@ public class MrcmtDAO {
 	
 	public MrcmtDAO(){
 		try{
-			String dbURL = "jdbc:mysql://localhost:3306/BBS?autoReconnect=true&useSSL=false";
+			String dbURL = "jdbc:mysql://localhost:3307/BBS?autoReconnect=true&useSSL=false";
 			String dbID = "root";
-			String dbPassword="1653";
+			String dbPassword="websys";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}
@@ -45,11 +45,11 @@ public class MrcmtDAO {
 			if(rs.next()){
 				return rs.getInt(1)+1;
 			}
-			return 1;//첫번째 댓글인 경우
+			return 1;//泥ル쾲吏� �뙎湲��씤 寃쎌슦
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 	public int write(String userID, String mrcmtContent, int rbsID){
@@ -65,7 +65,7 @@ public class MrcmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 	public ArrayList<Mrcmt> getList(int mrcmtPageNumber){
@@ -136,7 +136,7 @@ public class MrcmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 	public int delete(int mrcmtID){
@@ -148,10 +148,10 @@ public class MrcmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
-	public int deletePost(int rbsID){//게시글 삭제시 댓글도 함께 삭제
+	public int deletePost(int rbsID){//寃뚯떆湲� �궘�젣�떆 �뙎湲��룄 �븿猿� �궘�젣
 		String SQL = "DELETE FROM MRCMT WHERE rbsID = ?";
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -160,11 +160,11 @@ public class MrcmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 
-	public void reSort(int rbsID) {// 테이블 rbsID 재정렬
+	public void reSort(int rbsID) {// �뀒�씠釉� rbsID �옱�젙�젹
 		try {
 			String SQL = "UPDATE MRCMT SET rbsID = rbsID -1 WHERE rbsID > ?";
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -175,7 +175,7 @@ public class MrcmtDAO {
 		}
 	}
 	
-	public int countMrcmt(int mrbsID) {//테이블의 총 row 개수를 리턴
+	public int countMrcmt(int mrbsID) {//�뀒�씠釉붿쓽 珥� row 媛쒖닔瑜� 由ы꽩
 		int total_count = 0;
 		String SQL = "select count(mrbsID) count from MRCMT WHERE mrbsID = ?";
 		try {

@@ -37,11 +37,11 @@
 	<div class="container">
 
 		<div
-			style="margin-top: 200px; width: 450px; position: absolute; left: 46.5%; margin-left: -190px; margin-bottom: 100px;">
+			style="margin-top: 200px; width: 450px; position: absolute; left: 50%; margin-left: -225px; margin-bottom: 100px;">
 			<div class="jumbotron"
 				style="padding-top: 15px; padding-bottom: 35px;">
 				<form method="post" action="memberUpdateAction.jsp">
-					<h3 style="text-align: center;">비밀번호 및 이메일 변경</h3>
+					<h3 style="text-align: center;">회원정보 수정</h3>
 					<br>
 					<table style="text-align: left; width: 350px;">
 						<tr class="form-group">
