@@ -12,9 +12,9 @@ public class CmtDAO {
 	
 	public CmtDAO(){
 		try{
-			String dbURL = "jdbc:mysql://localhost:3306/BBS?autoReconnect=true&useSSL=false";
+			String dbURL = "jdbc:mysql://localhost:3307/BBS?autoReconnect=true&useSSL=false";
 			String dbID = "root";
-			String dbPassword="1653";
+			String dbPassword="websys";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}
@@ -45,11 +45,11 @@ public class CmtDAO {
 			if(rs.next()){
 				return rs.getInt(1)+1;
 			}
-			return 1;//첫번째 댓글인 경우
+			return 1;//泥ル쾲吏� �뙎湲��씤 寃쎌슦
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 	public int write(String userID, String cmtContent, int bbsID){
@@ -65,7 +65,7 @@ public class CmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 	public ArrayList<Cmt> getList(int cmtPageNumber){
@@ -136,7 +136,7 @@ public class CmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 	public int delete(int cmtID){
@@ -148,10 +148,10 @@ public class CmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
-	public int deletePost(int bbsID){//게시글 삭제시 댓글도 함께 삭제
+	public int deletePost(int bbsID){//寃뚯떆湲� �궘�젣�떆 �뙎湲��룄 �븿猿� �궘�젣
 		String SQL = "DELETE FROM CMT WHERE bbsID = ?";
 		try{
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -160,11 +160,11 @@ public class CmtDAO {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		return -1;//디비 오류
+		return -1;//�뵒鍮� �삤瑜�
 	}
 	
 
-	public void reSort(int bbsID) {// 테이블 bbsID 재정렬
+	public void reSort(int bbsID) {// �뀒�씠釉� bbsID �옱�젙�젹
 		try {
 			String SQL = "UPDATE CMT SET bbsID = bbsID -1 WHERE bbsID > ?";
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -175,7 +175,7 @@ public class CmtDAO {
 		}
 	}
 	
-	public int countCmt(int bbsID) {//테이블의 총 row 개수를 리턴
+	public int countCmt(int bbsID) {//�뀒�씠釉붿쓽 珥� row 媛쒖닔瑜� 由ы꽩
 		int total_count = 0;
 		String SQL = "select count(bbsID) count from CMT WHERE bbsID = ?";
 		try {

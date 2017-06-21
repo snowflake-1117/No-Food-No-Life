@@ -25,10 +25,10 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		if (userID == null) {
+		if (!userID.equals("admin")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('로그인을 하세요.')");
+			script.println("alert('관리자가 아닙니다.')");
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		} else {
@@ -58,13 +58,13 @@
 						&& request.getParameter("userEmail") != null
 						&& !request.getParameter("userEmail").equals("")) {
 					result = userDAO.update(request.getParameter("newPassword"), request.getParameter("userEmail"),
-							userID);
+							request.getParameter("userID"));
 				} else if (request.getParameter("newPassword") == null
 						|| request.getParameter("newPassword").equals("")) {
-					result = userDAO.userEmailUpdate(request.getParameter("userEmail"), userID);
+					result = userDAO.userEmailUpdate(request.getParameter("userEmail"), request.getParameter("userID"));
 				} else if (request.getParameter("userEmail") == null
 						|| request.getParameter("userEmail").equals("")) {
-					result = userDAO.userPasswordUpdate(request.getParameter("newPassword"), userID);
+					result = userDAO.userPasswordUpdate(request.getParameter("newPassword"), request.getParameter("userID"));
 				}
 				else result = -1;
 
@@ -78,7 +78,7 @@
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
 					script.println("alert('회원정보 변경에 성공했습니다.')");
-					script.println("location.href='main.jsp'");
+					script.println("location.href='memberInfo.jsp'");
 					script.println("</script>");
 				}
 			}

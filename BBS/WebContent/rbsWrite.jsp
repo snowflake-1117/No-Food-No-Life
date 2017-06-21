@@ -45,6 +45,7 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
+	<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
 		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
 			if (userID != null && userID.equals("admin")) {
 		%>
@@ -61,7 +62,7 @@ a, a:hover {
 		}
 	%>
 	</nav>
-	<div style="padding-top: 350px; padding-bottom: 350px"
+	<div style="padding-top: 250px; padding-bottom: 350px"
 		class="container" align="center">
 		<div class="row">
 			<form method="post" action="rbsWriteAction.jsp"

@@ -73,6 +73,7 @@ h1 {
 		} else {
 	%>
 	<div align="right" class="login">
+	<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
 		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
 			if (userID != null && userID.equals("admin")) {
 		%>
@@ -89,7 +90,7 @@ h1 {
 		}
 	%>
 	</nav>
-	<section class="section" style="padding-top:100px;font-size:20px;">
+	<section class="section" style="background:pink;padding-top:50px;font-size:20px;">
 	<article>
 	<p style="text-align: center;">
 		<span>No Food, No Life!</span> 는 레시피 공유 사이트입니다.

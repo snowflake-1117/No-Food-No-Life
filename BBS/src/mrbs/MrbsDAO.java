@@ -12,9 +12,9 @@ public class MrbsDAO {
 	
 	public MrbsDAO(){
 		try{
-			String dbURL = "jdbc:mysql://localhost:3306/BBS?autoReconnect=true&useSSL=false";
+			String dbURL = "jdbc:mysql://localhost:3307/BBS?autoReconnect=true&useSSL=false";
 			String dbID = "root";
-			String dbPassword="1653";
+			String dbPassword="websys";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}
@@ -45,11 +45,11 @@ public class MrbsDAO {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1;// 첫번째 게시물인 경우
+			return 1;// 泥ル쾲吏� 寃뚯떆臾쇱씤 寃쎌슦
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
 	public int write(String mrbsCategory, String mrbsTitle, String userID, String mrbsContent, String mrbsVideoSrc,
@@ -72,7 +72,7 @@ public class MrbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
 	public void hit(int mrbsID) {
@@ -252,7 +252,7 @@ public class MrbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
 	public int delete(int mrbsID) {
@@ -264,10 +264,10 @@ public class MrbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
-	public void reSort(int mrbsID) {// 테이블 mrbsID 재정렬
+	public void reSort(int mrbsID) {// �뀒�씠釉� mrbsID �옱�젙�젹
 		try {
 			String SQL = "UPDATE MRBS SET mrbsID = mrbsID -1 WHERE mrbsID > ?";
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

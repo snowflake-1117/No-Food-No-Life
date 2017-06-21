@@ -30,7 +30,7 @@ a, a:hover {
 	<nav align="center">
 	<ul class="nav">
 		<div>
-			<li><a href="introduce.jsp">Introduction</a></li>
+			<li><a href="introduction.jsp">Introduction</a></li>
 			<li><a href="rbs.jsp">Recipe</a></li>
 			<li><a href="mrbs.jsp">Community</a></li>
 			<li><a href="nbs.jsp">Notice&amp;QnA</a></li>
@@ -45,10 +45,12 @@ a, a:hover {
 	<%
 		} else {
 	%>
+
 	<div align="right" class="login">
-		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
-			if (userID != null && userID.equals("admin")) {
-		%>
+		<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
+		</a> <a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
+ 	if (userID != null && userID.equals("admin")) {
+ %>
 		</a> | <a href="memberInfo.jsp">회원관리&nbsp;&nbsp;&nbsp;</a>
 		<%
 			} else {
@@ -77,13 +79,13 @@ a, a:hover {
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img src="img/1.jpg">
+					<a href="rbsView.jsp?rbsID=7"><img class="img-responsive center-block" src="img/1.jpg"></a>
 				</div>
 				<div class="item">
-					<img src="img/2.jpg">
+					<a href="rbsView.jsp?rbsID=5"><img class="img-responsive center-block" src="img/2.jpg"></a>
 				</div>
 				<div class="item">
-					<img src="img/3.jpg">
+					<a href="rbsView.jsp?rbsID=15"><img class="img-responsive center-block" src="img/3.jpg"></a>
 				</div>
 			</div>
 			<a class="left carousel-control" href="#myCarousel" role="button"
