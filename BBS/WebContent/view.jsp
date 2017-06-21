@@ -79,6 +79,7 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
+	<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
 		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
 			if (userID != null && userID.equals("admin")) {
 		%>
@@ -96,8 +97,15 @@ a, a:hover {
 	%>
 	</nav>
 
+	<nav>
+	<ul class="menu">
+		<li><a class="before" href="mrbs.jsp">My recipes</a></li>
+		<li><a class="before" href="best.jsp">Best recipes</a></li>
+		<li><a class="active" href="bbs.jsp">Free board</a></li>
+	</ul>
+	</nav>
 	<div class="container"
-		style="padding-top: 350px; padding-bottom: 200px;">
+		style="padding-top: 250px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
 				<a href="bbs.jsp"

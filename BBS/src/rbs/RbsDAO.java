@@ -12,9 +12,9 @@ public class RbsDAO {
 
 	public RbsDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/BBS?autoReconnect=true&useSSL=false";
+			String dbURL = "jdbc:mysql://localhost:3307/BBS?autoReconnect=true&useSSL=false";
 			String dbID = "root";
-			String dbPassword = "1653";
+			String dbPassword = "websys";
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
@@ -44,11 +44,11 @@ public class RbsDAO {
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
-			return 1;// 첫번째 게시물인 경우
+			return 1;// 泥ル쾲吏� 寃뚯떆臾쇱씤 寃쎌슦
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
 	public int write(String rbsCategory, String rbsTitle, String userID, String rbsContent, String rbsVideoSrc,
@@ -70,7 +70,7 @@ public class RbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
 	public void hit(int rbsID) {
@@ -193,7 +193,7 @@ public class RbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
 	public int delete(int rbsID) {
@@ -205,10 +205,10 @@ public class RbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1;// 디비 오류
+		return -1;// �뵒鍮� �삤瑜�
 	}
 
-	public void reSort(int rbsID) {// 테이블 rbsID 재정렬
+	public void reSort(int rbsID) {// �뀒�씠釉� rbsID �옱�젙�젹
 		try {
 			String SQL = "UPDATE RBS SET rbsID = rbsID -1 WHERE rbsID > ?";
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -219,7 +219,7 @@ public class RbsDAO {
 		}
 	}
 
-	/*public int maxCount() {// 테이블의 총 row 개수를 리턴
+	/*public int maxCount() {// �뀒�씠釉붿쓽 珥� row 媛쒖닔瑜� 由ы꽩
 		int total_count = 0;
 		String SQL = "select count(*) count from rbs";
 		try {

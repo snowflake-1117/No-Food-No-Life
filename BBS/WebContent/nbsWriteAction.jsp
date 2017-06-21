@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="rbs.RbsDAO"%>
+<%@ page import="nbs.NbsDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -38,31 +38,23 @@
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		} else {
-			if (multi.getParameter("rbsTitle") == null || multi.getParameter("rbsContent") == null
-					||multi.getParameter("rbsTitle").equals("") || multi.getParameter("rbsContent").equals("")) {
+			if (multi.getParameter("nbsTitle") == null || multi.getParameter("nbsContent") == null
+					|| multi.getParameter("nbsTitle").equals("") || multi.getParameter("nbsContent").equals("")) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력되지 않은 사항이 있습니다. ')");
 				script.println("history.back()");
 				script.println("</script>");
 			} else {
-				RbsDAO rbsDAO = new RbsDAO();
+				NbsDAO nbsDAO = new NbsDAO();
 				int result;
 
-				File imgFile = multi.getFile("rbsImage");
-				if(imgFile!=null) imgName = imgFile.getName();
-				
-				if(multi.getParameter("rbsVideoSrc").equals("")||multi.getParameter("rbsVideoSrc") == null) {
-					result = rbsDAO.write(multi.getParameter("rbsCategory"), multi.getParameter("rbsTitle"), userID,
-							multi.getParameter("rbsContent"), null, imgName);
-				}
-				else {
-					result = rbsDAO.write(multi.getParameter("rbsCategory"), multi.getParameter("rbsTitle"), userID,
-							multi.getParameter("rbsContent"),
-							multi.getParameter("rbsVideoSrc").replace("https://www.youtube.com/watch?v=", "")
-									.replace("https://youtu.be/", ""),
-							imgName);
-				} 
+				File imgFile = multi.getFile("nbsImage");
+				if (imgFile != null)
+					imgName = imgFile.getName();
+
+				result = nbsDAO.write(multi.getParameter("nbsTitle"), userID,
+						multi.getParameter("nbsContent"), imgName);
 
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
@@ -73,7 +65,7 @@
 				} else {
 					PrintWriter script = response.getWriter();
 					script.println("<script> ");
-					script.println("location.href='rbs.jsp'");
+					script.println("location.href='nbs.jsp'");
 					script.println("</script>");
 				}
 			}

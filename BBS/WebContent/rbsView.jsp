@@ -72,6 +72,7 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
+	<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
 		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
 			if (userID != null && userID.equals("admin")) {
 		%>
@@ -90,7 +91,7 @@ a, a:hover {
 	</nav>
 
 	<div class="container"
-		style="padding-top: 350px; padding-bottom: 200px;">
+		style="padding-top: 250px; padding-bottom: 200px;">
 		<div style="padding-bottom: 30px;">
 			<div>
 				<a href="rbs.jsp"
@@ -180,6 +181,7 @@ a, a:hover {
 								</tr>
 							</thead>
 							<tbody>
+							<%if(userID!=null){ %>
 								<tr>
 									<td style="width: 20%;">
 										<p>댓글 내용</p>
@@ -194,6 +196,14 @@ a, a:hover {
 							</tbody>
 							<input style="display: none;" type="text" name="rbsID"
 								value="<%=rbsID%>">
+							<%} else {%>
+							<tr>
+									<td style="width: 100%;">
+										<p>로그인 후 이용해주세요</p>
+									</td>
+								</tr>
+							</tbody>
+							<%} %>
 						</table>
 					</form>
 				</div>

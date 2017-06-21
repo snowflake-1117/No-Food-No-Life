@@ -3,7 +3,6 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="nbs.NbsDAO"%>
 <%@ page import="nbs.Nbs"%>
-<%@ page import="rcmt.RcmtDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,6 +55,7 @@ a, a:hover {
 		} else {
 	%>
 	<div align="right" class="login">
+	<a><%=userID%>님 환영합니다!&nbsp;&nbsp;&nbsp;
 		<a href="check.jsp">마이페이지</a> | <a href="logoutAction.jsp">로그아웃 <%
 			if (userID != null && userID.equals("admin")) {
 		%>
@@ -79,13 +79,13 @@ a, a:hover {
 	</ul>
 	</nav>
 	<div class="container" align="center"
-		style="padding-top: 350px; padding-bottom: 100px;">
+		style="padding-top: 250px; padding-bottom: 100px;">
 		<%
 			if (userID != null && userID.equals("admin")) {
 		%>
 		<div align="right" style="padding-top: 20px; padding-bottom: 50px;">
 			<a href="nbsWrite.jsp" class="btn btn-success pull-right"
-				style="background-color: #ff7846; border: 1px solid #ff7846; margin-right: -13px;">글쓰기</a>
+				style="background-color: orange; border: 1px solid orange; margin-right: -13px;">글쓰기</a>
 		</div>
 		<%
 			}
@@ -110,7 +110,6 @@ a, a:hover {
 				<tbody>
 					<%
 						NbsDAO nbsDAO = new NbsDAO();
-						RcmtDAO rcmtDAO = new RcmtDAO();
 						ArrayList<Nbs> list = nbsDAO.getList(pageNumber);
 						for (int i = 0; i < list.size(); i++) {
 					%>
