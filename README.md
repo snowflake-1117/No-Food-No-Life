@@ -1,5 +1,11 @@
 No Food No Life
 ================
+### 프로젝트 구현 완료
+<br><br>
+### 17.06.21 update
+1. 담당업무 내역 추가
+2. 링크/글쓰기/글수정/댓글권한 관련 버그수정
+
 <br><br>
 ### 17.06.12 update
 
@@ -105,6 +111,6 @@ No Food No Life
 > - **공지&QnA**
 
 ## 개발자
-> - snowflake-1117(1117hyemin@gmail.com)
-> - HyoeunKwon(oasis_1205@naver.com)
-> - su100(zxctys@naver.com) 
+> - snowflake-1117(1117hyemin@gmail.com): 게시판 기능 전체
+> - HyoeunKwon(oasis_1205@naver.com): 회원관리, 검색기능
+> - su100(zxctys@naver.com) : UI 디자인
