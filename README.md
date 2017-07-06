@@ -1,6 +1,9 @@
 No Food No Life
 ================
 ### 프로젝트 구현 완료
+
+<a href="https://www.youtube.com/watch?v=OjPdJTX6T5U&feature=youtu.be">동영상 링크</a>
+
 <br><br>
 ### 17.06.21 update
 1. 담당업무 내역 추가
